@@ -13,8 +13,8 @@ body {
 }
 
 header {
-  background-image: url('/assets/images/header-image.jpeg'); /* Replace 'header-image.jpeg' with your image filename */
+  background-image: url('https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/assets/images/header-image.jpeg?raw=true'); /* Replace 'header-image.jpeg' with your image filename */
   background-size: cover; /* Set the background image size to cover the header */
   background-position: center; /* Center the background image horizontally and vertically */
-  height: 200px; /* Set the height of the header, adjust this value as needed */
+  height: 300px; /* Set the height of the header, adjust this value as needed */
 }
