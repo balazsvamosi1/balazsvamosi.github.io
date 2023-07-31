@@ -3,9 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
+  <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+  <!-- The above line assumes that the theme's CSS file is located in assets/css/style.css -->
 </head>
 <body>
-  {{ content }}
+  <header>
+    <!-- Here, you can add your custom header content or leave it empty -->
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer>
+    <!-- Here, you can add your custom footer content or leave it empty -->
+  </footer>
+
+  <script src="{{ "/assets/js/main.js" | relative_url }}"></script>
+  <!-- The above line assumes that the theme's JavaScript file is located in assets/js/main.js -->
 </body>
 </html>
