@@ -9,8 +9,6 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
 
 ## Galéria
 
-<button id="gallery-button">Megnyitás</button>
-
 <div id="hidden-gallery" style="display: none;">
   {% for file in site.static_files %}
     {% if file.extname == '.jpeg' or file.extname == '.jpg' %}
@@ -23,6 +21,8 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
+
+<button id="gallery-button">Galéria</button>
 
 <script>
   document.getElementById('gallery-button').addEventListener('click', function() {
