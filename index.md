@@ -102,6 +102,6 @@ background_image: "{{ site.background_images | sample }}"
 <div class="center-text">
   <h2>Kapcsolat</h2>
   <p>
-    További festményekért és árakért érdeklődj: email(kukac)email.com címen
+    További festményekért és árakért érdeklődj: hjudit64(kukac)gmail.com címen
   </p>
 </div>
