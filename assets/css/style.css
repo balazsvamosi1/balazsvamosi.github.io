@@ -1,5 +1,6 @@
 /* assets/css/style.css */
-
-main {
-  color: black;
+body {
+  background-color: #ADD8E6;
+  margin: 0;
+  padding: 0;
 }
