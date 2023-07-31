@@ -5,8 +5,14 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
 ## Galéria
 
 <div class="gallery">
-  ![Photo 1](d1.jpeg)
-  ![Photo 2](d2.jpeg)
-  ![Photo 3](d3.jpeg)
-  <!-- Add more image tags for your other photos -->
+  <a href="d1.jpeg" data-lightbox="gallery" data-title="Photo 1">
+    <img src="d1.jpeg" alt="Photo 1">
+  </a>
+  <a href="d2.jpeg" data-lightbox="gallery" data-title="Photo 2">
+    <img src="d2.jpeg" alt="Photo 2">
+  </a>
+  <a href="d3.jpeg" data-lightbox="gallery" data-title="Photo 3">
+    <img src="d3.jpeg" alt="Photo 3">
+  </a>
+  <!-- Add more image tags and anchor tags for your other photos -->
 </div>
