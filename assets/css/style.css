@@ -8,5 +8,11 @@ body {
 
 header {
   background-color: #00008B; /* Set the background color for the header (white in this example) */
+  background-image: url('/assets/images/header-image.jpg');
+  background-repeat: repeat-x; /* Repeat the image horizontally */
+  background-size: auto; /* Set the image size to its original dimensions */
+  background-position: center top; /* Center the image horizontally and align it to the top */
   padding: 30px; /* Add padding to the header for spacing */
+  height: 200px; /* Set the height of the header, adjust this value as needed */
+  /* Add any other styles for the header, such as padding or text color */
 }
