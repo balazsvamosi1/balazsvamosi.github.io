@@ -5,6 +5,25 @@
   <title>{{ page.title }}</title>
   <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
   <!-- The above line assumes that the theme's CSS file is located in assets/css/style.css -->
+
+  <style>
+    /* Center the text content */
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: url("{{ site.baseurl }}/assets/images/backgrounds/{{ site.background_image }}") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Adjust the appearance of the gallery button */
+    button#gallery-button {
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
   <header>
