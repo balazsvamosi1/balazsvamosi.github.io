@@ -43,6 +43,14 @@ background_image: "{{ site.background_images | sample }}"
       max-width: 70%;
       max-height: 70vh;
     }
+
+    /* Make the "Galéria" button bigger on handy screens */
+    @media (max-width: 767px) {
+      #gallery-button {
+        font-size: 1.5rem;
+        padding: 10px 20px;
+      }
+    }
   </style>
 
   <script>
