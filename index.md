@@ -17,7 +17,7 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
   const galleryContainer = document.getElementById('gallery-container');
 
   // Fetch the list of repository contents using GitHub API
-  fetch('https://api.github.com/repos/balazsvamosi1/balazsvamosi1/contents/')
+  fetch('https://api.github.com/repos/balazsvamosi/balazsvamosi.github.io/contents/')
     .then((response) => response.json())
     .then((data) => {
       // Filter the JPEG images from the fetched data
