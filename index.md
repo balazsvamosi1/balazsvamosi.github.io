@@ -9,7 +9,7 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
 
 ## Galéria
 
-<button id="gallery-button">Galéria</button>
+<button id="gallery-button" onclick="showGallery()">Galéria</button>
 
 <div id="hidden-gallery" style="display: none;"></div>
 
@@ -83,3 +83,7 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
       });
   }
 </script>
+
+## Kapcsolat
+
+További festményekért és árakért érdeklődj: email(kukac)email.com címen
