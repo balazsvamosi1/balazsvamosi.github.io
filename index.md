@@ -24,13 +24,28 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
 
+<style>
+  .gallery-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+</style>
+
 <script>
   function showGallery() {
     var button = document.getElementById('gallery-button');
     var hiddenGallery = document.getElementById('hidden-gallery');
     
     if (hiddenGallery.style.display === 'none') {
-      hiddenGallery.style.display = 'block';
+      hiddenGallery.style.display = 'flex';
       button.innerHTML = 'Bezárás';
     } else {
       hiddenGallery.style.display = 'none';
