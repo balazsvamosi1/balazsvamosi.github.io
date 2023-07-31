@@ -13,7 +13,6 @@ body {
 }
 
 header {
-  background-color: #00008B; /* Set the background color for the header (white in this example) */
   background-image: url('/assets/images/header-image.jpeg');
   background-repeat: repeat-x; /* Repeat the image horizontally */
   background-size: cover; /* Set the image size to its original dimensions */
