@@ -1,37 +1,23 @@
-## Udvozollek az oldalamon
+---
+layout: default
+title: Üdvözöllek az oldalamon
+---
 
-Szervusz!
+# Üdvözöllek az oldalamon
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészetének egyedülálló és szerves része. Kezdetben a homokba, földre pöttyözték az ábrákat, mintákat, mely törzsi történeteknek szent jelentései voltak. Egy-egy festmény adott szertartáshoz, rituáléhoz tartozott. A beavatatlanok soha nem láthatták ezeket a rajzokat, szent mintákat, mivel a földet újra elsimították a szertartás után.
 
-### Markdown
+## Galéria
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Menü
-## Munkáim
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/balazsvamosi1/balazsvamosi.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+<div class="gallery">
+  <a href="d1.jpeg" data-lightbox="gallery" data-title="Photo 1">
+    <img src="d1.jpeg" alt="Photo 1">
+  </a>
+  <a href="d2.jpeg" data-lightbox="gallery" data-title="Photo 2">
+    <img src="d2.jpeg" alt="Photo 2">
+  </a>
+  <a href="d3.jpeg" data-lightbox="gallery" data-title="Photo 3">
+    <img src="d3.jpeg" alt="Photo 3">
+  </a>
+  <!-- Add more image tags and anchor tags for your other photos -->
+</div>
