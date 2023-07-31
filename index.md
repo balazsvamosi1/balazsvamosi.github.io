@@ -46,8 +46,56 @@ background_image: "{{ site.background_images | sample }}"
   </style>
 
   <script>
-    // Rest of the JavaScript code for the gallery remains unchanged
-    // ...
+    function showGallery() {
+      var button = document.getElementById('gallery-button');
+      var hiddenGallery = document.getElementById('hidden-gallery');
+
+      if (hiddenGallery.style.display === 'none') {
+        getImagesFromRepo().then(function (imageURLs) {
+          for (var i = 0; i < imageURLs.length; i++) {
+            var aTag = document.createElement('a');
+            aTag.href = imageURLs[i];
+            aTag.setAttribute('data-lightbox', 'gallery');
+            aTag.setAttribute('data-title', 'Photo ' + (i + 1));
+
+            var imgTag = document.createElement('img');
+            imgTag.src = imageURLs[i];
+            imgTag.alt = 'Photo ' + (i + 1);
+
+            aTag.appendChild(imgTag);
+            hiddenGallery.appendChild(aTag);
+          }
+
+          hiddenGallery.style.display = 'flex';
+          button.innerHTML = 'Bezárás';
+
+          var gallery = new SimpleLightbox('#hidden-gallery a');
+        });
+      } else {
+        hiddenGallery.innerHTML = '';
+        hiddenGallery.style.display = 'none';
+        button.innerHTML = 'Galéria';
+      }
+    }
+
+    function getImagesFromRepo() {
+      var username = 'balazsvamosi1';
+      var repo = 'balazsvamosi.github.io';
+
+      return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/')
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          var imageUrls = data.filter(function (item) {
+            return item.name.endsWith('.jpeg') || item.name.endsWith('.jpg');
+          }).map(function (item) {
+            return item.download_url;
+          });
+
+          return imageUrls;
+        });
+    }
   </script>
 </div>
 
