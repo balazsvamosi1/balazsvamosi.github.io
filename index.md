@@ -9,6 +9,8 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
 
 ## Galéria
 
+<button id="gallery-button" onclick="showGallery()">Galéria</button>
+
 <div id="hidden-gallery" style="display: none;">
   {% for file in site.static_files %}
     {% if file.extname == '.jpeg' or file.extname == '.jpg' %}
@@ -22,16 +24,19 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
 
-<button id="gallery-button">Galéria</button>
-
 <script>
-  document.getElementById('gallery-button').addEventListener('click', function() {
+  function showGallery() {
+    var button = document.getElementById('gallery-button');
     var hiddenGallery = document.getElementById('hidden-gallery');
-    hiddenGallery.style.display = 'block';
+    
+    if (hiddenGallery.style.display === 'none') {
+      hiddenGallery.style.display = 'block';
+      button.innerHTML = 'Bezárás';
+    } else {
+      hiddenGallery.style.display = 'none';
+      button.innerHTML = 'Galéria';
+    }
 
     var gallery = new SimpleLightbox('#hidden-gallery a');
-
-    // Hide the button after the gallery is opened
-    this.style.display = 'none';
-  });
+  }
 </script>
