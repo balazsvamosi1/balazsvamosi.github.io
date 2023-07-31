@@ -90,7 +90,7 @@ background_image: "{{ site.background_images | sample }}"
       var username = 'balazsvamosi1';
       var repo = 'balazsvamosi.github.io';
 
-      return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/assets/images/' + subfolder)
+      return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/ajendak')
         .then(function (response) {
           return response.json();
         })
