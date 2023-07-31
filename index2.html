@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Photo Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+      padding: 20px 0;
+    }
+    
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Photo Gallery</h1>
+  <div class="gallery">
+    <img src="d1.jpeg" alt="Photo 1">
+    <img src="d2.jpeg" alt="Photo 2">
+    <img src="d3.jpeg" alt="Photo 3">
+    <!-- Add more image tags for your other photos -->
+  </div>
+</body>
+</html>
