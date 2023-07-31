@@ -13,17 +13,44 @@ background_image: "{{ site.background_images | sample }}"
 
   <button id="gallery-button" onclick="showGallery()">Galéria</button>
 
-  <div class="gallery-container" id="hidden-gallery" style="visibility: hidden;"></div>
+  <div id="hidden-gallery" style="display: none;"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
+
+  <style>
+    .center-text {
+      text-align: center;
+      margin: 0 auto;
+      max-width: 800px; /* Set a maximum width for better presentation */
+    }
+
+    .gallery-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* Scale the images in the pop-up to 70% of the screen size */
+    #hidden-gallery img {
+      max-width: 70%;
+      max-height: 70vh;
+    }
+  </style>
 
   <script>
     function showGallery() {
       var button = document.getElementById('gallery-button');
       var hiddenGallery = document.getElementById('hidden-gallery');
 
-      if (hiddenGallery.style.visibility === 'hidden') {
+      if (hiddenGallery.style.display === 'none') {
         getImagesFromRepo().then(function (imageURLs) {
           for (var i = 0; i < imageURLs.length; i++) {
             var aTag = document.createElement('a');
@@ -39,14 +66,14 @@ background_image: "{{ site.background_images | sample }}"
             hiddenGallery.appendChild(aTag);
           }
 
-          hiddenGallery.style.visibility = 'visible';
+          hiddenGallery.style.display = 'flex';
           button.innerHTML = 'Bezárás';
 
           var gallery = new SimpleLightbox('#hidden-gallery a');
         });
       } else {
         hiddenGallery.innerHTML = '';
-        hiddenGallery.style.visibility = 'hidden';
+        hiddenGallery.style.display = 'none';
         button.innerHTML = 'Galéria';
       }
     }
