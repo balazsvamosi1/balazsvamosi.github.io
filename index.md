@@ -51,16 +51,16 @@ background_image: "{{ site.background_images | sample }}"
       var hiddenGallery = document.getElementById('hidden-gallery');
 
       if (hiddenGallery.style.display === 'none') {
-        getImagesFromRepo().then(function (imageURLs) {
+        getImagesFromRepo('ajendak').then(function (imageURLs) {
           for (var i = 0; i < imageURLs.length; i++) {
             var aTag = document.createElement('a');
             aTag.href = imageURLs[i];
             aTag.setAttribute('data-lightbox', 'gallery');
-            aTag.setAttribute('data-title', 'Photo ' + (i + 1));
+            aTag.setAttribute('data-title', 'Ajendak Image ' + (i + 1));
 
             var imgTag = document.createElement('img');
             imgTag.src = imageURLs[i];
-            imgTag.alt = 'Photo ' + (i + 1);
+            imgTag.alt = 'Ajendak Image ' + (i + 1);
 
             aTag.appendChild(imgTag);
             hiddenGallery.appendChild(aTag);
@@ -78,11 +78,11 @@ background_image: "{{ site.background_images | sample }}"
       }
     }
 
-    function getImagesFromRepo() {
+    function getImagesFromRepo(subfolder) {
       var username = 'balazsvamosi1';
       var repo = 'balazsvamosi.github.io';
 
-      return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/')
+      return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/assets/images/' + subfolder)
         .then(function (response) {
           return response.json();
         })
