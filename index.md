@@ -10,16 +10,13 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
 ## Galéria
 
 <div class="gallery" id="gallery-container">
-  <a href="https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/d1.jpeg?raw=true" data-lightbox="gallery" data-title="Photo 1">
-    <img src="https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/d1.jpeg?raw=true" alt="Photo 1">
-  </a>
-  <a href="https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/d2.jpeg?raw=true" data-lightbox="gallery" data-title="Photo 2">
-    <img src="https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/d2.jpeg?raw=true" alt="Photo 2">
-  </a>
-  <a href="https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/d3.jpeg?raw=true" data-lightbox="gallery" data-title="Photo 3">
-    <img src="https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/d3.jpeg?raw=true" alt="Photo 3">
-  </a>
-  <!-- Add more image tags and anchor tags for your other photos -->
+  {% for file in site.static_files %}
+    {% if file.extname == '.jpeg' or file.extname == '.jpg' %}
+      <a href="{{ file.path | relative_url }}" data-lightbox="gallery" data-title="{{ file.name }}">
+        <img src="{{ file.path | relative_url }}" alt="{{ file.name }}">
+      </a>
+    {% endif %}
+  {% endfor %}
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
