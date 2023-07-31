@@ -10,38 +10,21 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
 ## Galéria
 
 <div class="gallery" id="gallery-container">
-  <!-- The gallery images will be loaded here -->
+  <a href="https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/d1.jpeg?raw=true" data-lightbox="gallery" data-title="Photo 1">
+    <img src="https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/d1.jpeg?raw=true" alt="Photo 1">
+  </a>
+  <a href="https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/d2.jpeg?raw=true" data-lightbox="gallery" data-title="Photo 2">
+    <img src="https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/d2.jpeg?raw=true" alt="Photo 2">
+  </a>
+  <a href="https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/d3.jpeg?raw=true" data-lightbox="gallery" data-title="Photo 3">
+    <img src="https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/d3.jpeg?raw=true" alt="Photo 3">
+  </a>
+  <!-- Add more image tags and anchor tags for your other photos -->
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
+
 <script>
-  const galleryContainer = document.getElementById('gallery-container');
-
-  // Fetch the list of repository contents using GitHub API
-  fetch('https://api.github.com/repos/balazsvamosi/balazsvamosi.github.io/contents/')
-    .then((response) => response.json())
-    .then((data) => {
-      // Filter the JPEG images from the fetched data
-      const jpegImages = data.filter((file) => file.name.toLowerCase().endsWith('.jpeg') || file.name.toLowerCase().endsWith('.jpg'));
-
-      // Create the gallery elements and append them to the container
-      jpegImages.forEach((image) => {
-        const galleryImage = document.createElement('a');
-        galleryImage.href = image.download_url;
-        galleryImage.setAttribute('data-lightbox', 'gallery');
-        galleryImage.setAttribute('data-title', image.name);
-
-        const imageElement = document.createElement('img');
-        imageElement.src = image.download_url;
-        imageElement.alt = image.name;
-
-        galleryImage.appendChild(imageElement);
-        galleryContainer.appendChild(galleryImage);
-      });
-
-      // Initialize SimpleLightbox after all images are loaded
-      var gallery = new SimpleLightbox('.gallery a');
-    })
-    .catch((error) => {
-      console.error('Error fetching repository contents:', error);
-    });
+  var gallery = new SimpleLightbox('.gallery a');
 </script>
