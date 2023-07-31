@@ -4,3 +4,8 @@ body {
   margin: 0;
   padding: 0;
 }
+
+header {
+  background-color: #FFFFFF; /* Set the background color for the header (white in this example) */
+  padding: 20px; /* Add padding to the header for spacing */
+}
