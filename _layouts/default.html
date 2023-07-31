@@ -5,34 +5,6 @@
   <title>{{ page.title }}</title>
   <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
   <!-- The above line assumes that the theme's CSS file is located in assets/css/style.css -->
-
-  <!-- Add the following lines to include the theme's CSS and JavaScript assets -->
-  {% for stylesheet in site.static_files %}
-    {% if stylesheet.path contains 'jekyll-theme-architect' %}
-      <link rel="stylesheet" href="{{ stylesheet.path | relative_url }}">
-    {% endif %}
-  {% endfor %}
-  <script src="{{ "/assets/js/main.js" | relative_url }}"></script>
-  <!-- The above line assumes that the theme's JavaScript file is located in assets/js/main.js -->
-
-  <style>
-    /* Center the content at the top */
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start; /* Align content to the top */
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      background: url("{{ site.baseurl }}/assets/images/backgrounds/{{ site.background_image }}") no-repeat center center fixed;
-      background-size: cover;
-    }
-
-    /* Adjust the appearance of the gallery button */
-    button#gallery-button {
-      margin-bottom: 20px;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -46,5 +18,8 @@
   <footer>
     <!-- Here, you can add your custom footer content or leave it empty -->
   </footer>
+
+  <script src="{{ "/assets/js/main.js" | relative_url }}"></script>
+  <!-- The above line assumes that the theme's JavaScript file is located in assets/js/main.js -->
 </body>
 </html>
