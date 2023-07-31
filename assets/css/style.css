@@ -1,4 +1,10 @@
 /* assets/css/style.css */
+/* Import the Borel font */
+@font-face {
+  font-family: 'Borel';
+  src: url('/assets/fonts/Borel-Regular.ttf') format('truetype'); /* Update the path to the font file */
+}
+
 body {
   font-family: 'Borel', sans-serif; /* Apply the custom font to the body */
   background-color: #ADD8E6;
