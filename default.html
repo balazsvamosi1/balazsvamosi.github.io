@@ -8,26 +8,37 @@
       margin: 0;
       padding: 20px;
     }
-    
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 10px;
     }
-    
+
     .gallery img {
       width: 100%;
       height: auto;
       border: 1px solid #ccc;
       border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* SimpleLightbox Styles */
+    .slbMainWrapper {
+      z-index: 9999;
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
 </head>
 <body>
-  <div class="container">
+  <div class="gallery">
     {{ content }}
   </div>
+
+  <script>
+    // Initialize SimpleLightbox on images inside the .gallery div
+    var gallery = new SimpleLightbox('.gallery a');
+  </script>
 </body>
 </html>
