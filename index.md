@@ -43,14 +43,6 @@ background_image: "{{ site.background_images | sample }}"
       max-width: 70%;
       max-height: 70vh;
     }
-
-    /* Make the "Galéria" button bigger on handy screens */
-    @media (max-width: 767px) {
-      #gallery-button {
-        font-size: 1.5rem;
-        padding: 10px 20px;
-      }
-    }
   </style>
 
   <script>
@@ -59,16 +51,16 @@ background_image: "{{ site.background_images | sample }}"
       var hiddenGallery = document.getElementById('hidden-gallery');
 
       if (hiddenGallery.style.display === 'none') {
-        getImagesFromRepo('ajendak').then(function (imageURLs) {
+        getImagesFromRepo().then(function (imageURLs) {
           for (var i = 0; i < imageURLs.length; i++) {
             var aTag = document.createElement('a');
             aTag.href = imageURLs[i];
             aTag.setAttribute('data-lightbox', 'gallery');
-            aTag.setAttribute('data-title', 'Ajendak Image ' + (i + 1));
+            aTag.setAttribute('data-title', 'Photo ' + (i + 1));
 
             var imgTag = document.createElement('img');
             imgTag.src = imageURLs[i];
-            imgTag.alt = 'Ajendak Image ' + (i + 1);
+            imgTag.alt = 'Photo ' + (i + 1);
 
             aTag.appendChild(imgTag);
             hiddenGallery.appendChild(aTag);
@@ -86,11 +78,11 @@ background_image: "{{ site.background_images | sample }}"
       }
     }
 
-    function getImagesFromRepo(subfolder) {
+    function getImagesFromRepo() {
       var username = 'balazsvamosi1';
       var repo = 'balazsvamosi.github.io';
 
-      return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/ajendak')
+      return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/')
         .then(function (response) {
           return response.json();
         })
