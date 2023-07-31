@@ -13,11 +13,9 @@ body {
 }
 
 header {
-  background-image: url('/assets/images/header-image.jpeg');
-  background-repeat: repeat-x; /* Repeat the image horizontally */
-  background-size: cover; /* Set the image size to its original dimensions */
-  background-position: center top; /* Center the image horizontally and align it to the top */
-  padding: 30px; /* Add padding to the header for spacing */
-  height: 200px; /* Set the height of the header, adjust this value as needed */
-  /* Add any other styles for the header, such as padding or text color */
+  /* Other styles for the header (e.g., height, padding, etc.) */
+  background-image: url('/assets/images/header-image.jpeg'); /* Replace 'header-image.jpeg' with your image filename */
+  background-size: cover; /* Set the background image size to cover the header */
+  background-position: center; /* Center the background image horizontally and vertically */
+  /* Other styles for the header */
 }
