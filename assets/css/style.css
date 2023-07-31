@@ -14,7 +14,7 @@ body {
 
 header {
   background-color: #00008B; /* Set the background color for the header (white in this example) */
-  background-image: url('/assets/images/header-image.jpg');
+  background-image: url('/assets/images/header-image.jpeg');
   background-repeat: repeat-x; /* Repeat the image horizontally */
   background-size: auto; /* Set the image size to its original dimensions */
   background-position: center top; /* Center the image horizontally and align it to the top */
