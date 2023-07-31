@@ -9,7 +9,9 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
 
 ## Galéria
 
-<div class="gallery" id="gallery-container">
+<button id="gallery-button">Megnyitás</button>
+
+<div id="hidden-gallery" style="display: none;">
   {% for file in site.static_files %}
     {% if file.extname == '.jpeg' or file.extname == '.jpg' %}
       <a href="{{ file.path | relative_url }}" data-lightbox="gallery" data-title="{{ file.name }}">
@@ -23,5 +25,13 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
 
 <script>
-  var gallery = new SimpleLightbox('.gallery a');
+  document.getElementById('gallery-button').addEventListener('click', function() {
+    var hiddenGallery = document.getElementById('hidden-gallery');
+    hiddenGallery.style.display = 'block';
+
+    var gallery = new SimpleLightbox('#hidden-gallery a');
+
+    // Hide the button after the gallery is opened
+    this.style.display = 'none';
+  });
 </script>
