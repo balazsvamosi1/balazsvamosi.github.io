@@ -14,9 +14,11 @@ A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészeténe
 <div id="hidden-gallery" style="display: none;">
   {% for file in site.static_files %}
     {% if file.extname == '.jpeg' or file.extname == '.jpg' %}
-      <a href="{{ file.path | relative_url }}" data-lightbox="gallery" data-title="{{ file.name }}">
-        <img src="{{ file.path | relative_url }}" alt="{{ file.name }}">
-      </a>
+      {% if file.tags contains 'include-in-gallery' %}
+        <a href="{{ file.path | relative_url }}" data-lightbox="gallery" data-title="{{ file.name }}">
+          <img src="{{ file.path | relative_url }}" alt="{{ file.name }}">
+        </a>
+      {% endif %}
     {% endif %}
   {% endfor %}
 </div>
