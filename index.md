@@ -4,37 +4,21 @@ title: My Photo Gallery
 background_image: "{{ site.background_images | sample }}"
 ---
 
-<div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE24! </h1>
-
-  <p>
-   Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
-
-A munkáim inspirációját a hagyományos ausztrál őslakosok, az Aboriginal Australians pontfestészete adja. Ez az ősi művészetforma a homokba és a földre való apró pontokkal történő ábrázolást jelenti, amelyeket szent jelentésekkel és történetekkel ruháztak fel a törzsi kultúrákban. 
-
-Ezeket a hagyományokat és az ausztrál kultúra mély tiszteletét hordozva alkottam meg ezeket a festményeket. Remélem, hogy a művészeti alkotásaimban megtalálod azt a kis csodát, amelyet én is átéltem az alkotásuk közben.
-
-Az online galériámban számos kép található, amelyek között megtalálod az örömteli és mély gondolatokat ébresztő alkotásokat is. Nézz körül, és fedezd fel a színek és formák gazdag világát!
-
-Ha bármilyen kérdésed van az alkotásaimmal kapcsolatban vagy érdeklődsz egy-egy festményem iránt, ne habozz felvenni velem a kapcsolatot. Örömmel válaszolok minden megkeresésre.
-
-Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által éppolyan élményeket élhetsz át, mint én alkotás közben..
-</p>
-</div>
-
-<div class="center-text">
-  <h2>Galéria</h2>
-</div>
-
-<!-- Buttons to trigger the galleries -->
-<button id="gallery-button1" onclick="showGallery('ajandek')">Ajándék</button>
-<button id="gallery-button2" onclick="showGallery('bogrek')">Bögrék</button>
-<button id="gallery-button3" onclick="showGallery('mandalak')">Mandalák</button>
-
-<!-- Hidden gallery container -->
-<div id="hidden-gallery" style="display: none;"></div>
-
 <style>
+  body {
+    font-family: 'Borel', sans-serif;
+    background-color: #ADD8E6;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background-image: url('https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/assets/images/header-image.jpeg?raw=true');
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+  }
+
   .center-text {
     text-align: center;
     margin: 0 auto;
@@ -61,6 +45,36 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
   }
 </style>
 
+<div class="center-text">
+  <h1>Üdvözöllek az oldalamon !TEST PAGE25! </h1>
+
+  <p>
+    Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
+
+    A munkáim inspirációját a hagyományos ausztrál őslakosok, az Aboriginal Australians pontfestészete adja. Ez az ősi művészetforma a homokba és a földre való apró pontokkal történő ábrázolást jelenti, amelyeket szent jelentésekkel és történetekkel ruháztak fel a törzsi kultúrákban. 
+
+    Ezeket a hagyományokat és az ausztrál kultúra mély tiszteletét hordozva alkottam meg ezeket a festményeket. Remélem, hogy a művészeti alkotásaimban megtalálod azt a kis csodát, amelyet én is átéltem az alkotásuk közben.
+
+    Az online galériámban számos kép található, amelyek között megtalálod az örömteli és mély gondolatokat ébresztő alkotásokat is. Nézz körül, és fedezd fel a színek és formák gazdag világát!
+
+    Ha bármilyen kérdésed van az alkotásaimmal kapcsolatban vagy érdeklődsz egy-egy festményem iránt, ne habozz felvenni velem a kapcsolatot. Örömmel válaszolok minden megkeresésre.
+
+    Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által éppolyan élményeket élhetsz át, mint én alkotás közben..
+  </p>
+</div>
+
+<div class="center-text">
+  <h2>Galéria</h2>
+</div>
+
+<!-- Buttons to trigger the galleries -->
+<button id="gallery-button1" onclick="showGallery('ajandek')">Ajándék</button>
+<button id="gallery-button2" onclick="showGallery('bogrek')">Bögrék</button>
+<button id="gallery-button3" onclick="showGallery('mandalak')">Mandalák</button>
+
+<!-- Hidden gallery container -->
+<div id="hidden-gallery" style="display: none;"></div>
+
 <script>
   function showGallery(folder) {
     var button = document.getElementById(`gallery-button${folder}`);
@@ -85,7 +99,10 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
         hiddenGallery.style.display = 'flex';
         button.innerHTML = 'Bezárás';
 
-        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
+        // Initialize PhotoSwipe
+        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`, {
+          // Customize PhotoSwipe options here if needed
+        });
       });
     } else {
       hiddenGallery.innerHTML = '';
