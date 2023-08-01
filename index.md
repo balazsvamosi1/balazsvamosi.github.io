@@ -56,7 +56,6 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
       max-height: 70vh;
     }
   </style>
-
  <script>
   function showGallery(folder) {
     var button = document.getElementById(`gallery-button${folder}`);
@@ -68,6 +67,8 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
         for (var i = 0; i < imageURLs.length; i++) {
           var aTag = document.createElement('a');
           aTag.href = imageURLs[i];
+          aTag.setAttribute('data-lightbox', `gallery-${folder}`);
+          aTag.setAttribute('data-title', 'Photo ' + (i + 1));
 
           var imgTag = document.createElement('img');
           imgTag.src = imageURLs[i];
@@ -79,6 +80,8 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
 
         hiddenGallery.style.display = 'flex';
         button.innerHTML = 'Bezárás';
+
+        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
       });
     } else {
       hiddenGallery.innerHTML = '';
