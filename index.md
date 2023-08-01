@@ -46,7 +46,7 @@ background_image: "{{ site.background_images | sample }}"
 </style>
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE25! </h1>
+  <h1>Üdvözöllek az oldalamon !TEST PAGE26! </h1>
 
   <p>
     Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
