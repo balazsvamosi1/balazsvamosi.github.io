@@ -41,18 +41,16 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Galéria section -->
 <div class="center-text">
-  <h2>Galéria 3 </h2>
+  <h2>Galéria 4</h2>
   <!-- Add any additional content or description for the gallery here -->
 </div>
 
 <!-- Hidden gallery container -->
 <div id="hidden-gallery" style="display: none;"></div>
 
-<!-- Buttons to trigger the galleries -->
+<!-- Button to trigger the gallery -->
 <div class="center-buttons">
-  <button id="gallery-button-ajandek" onclick="showGallery('ajandek')">Ajándék</button>
-  <button id="gallery-button-bogrek" onclick="showGallery('bogrek')">Bögrék</button>
-  <button id="gallery-button-mandalak" onclick="showGallery('mandalak')">Mandalák</button>
+  <button onclick="showGallery('ajandek')">Ajándék</button>
 </div>
 
 <!-- Kapcsolat section -->
@@ -67,9 +65,10 @@ background_image: "{{ site.background_images | sample }}"
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
 
+<!-- Initialize PhotoSwipe for the first gallery -->
 <script>
   function showGallery(folder) {
-    var button = document.getElementById(`gallery-button-${folder}`);
+    var button = document.getElementById('gallery-button');
     var hiddenGallery = document.getElementById('hidden-gallery');
 
     if (hiddenGallery.style.display === 'none') {
@@ -92,12 +91,12 @@ background_image: "{{ site.background_images | sample }}"
         hiddenGallery.style.display = 'flex';
         button.innerHTML = 'Bezárás';
 
-        initPhotoSwipeFromDOM(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
+        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
       });
     } else {
       hiddenGallery.innerHTML = '';
       hiddenGallery.style.display = 'none';
-      button.innerHTML = `Galéria ${folder}`;
+      button.innerHTML = 'Galéria';
     }
   }
 
