@@ -5,7 +5,7 @@ background_image: "{{ site.background_images | sample }}"
 ---
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE2! </h1>
+  <h1>Üdvözöllek az oldalamon !TEST PAGE3! </h1>
 
   <p>
    Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
@@ -57,61 +57,61 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
     }
   </style>
 
-  <script>
-    function showGallery(folder) {
-      var button = document.getElementById(`gallery-button${folder}`);
-      var hiddenGallery = document.getElementById('hidden-gallery');
+ <script>
+  function showGallery(folder) {
+    var button = document.getElementById(`gallery-button${folder}`);
+    var hiddenGallery = document.getElementById('hidden-gallery');
 
-      if (hiddenGallery.style.display === 'none') {
-        getImagesFromRepo(folder).then(function (imageURLs) {
-          hiddenGallery.innerHTML = ''; // Clear any previous images
-          for (var i = 0; i < imageURLs.length; i++) {
-            var aTag = document.createElement('a');
-            aTag.href = imageURLs[i];
-            aTag.setAttribute('data-lightbox', `gallery-${folder}`);
-            aTag.setAttribute('data-title', 'Photo ' + (i + 1));
+    if (hiddenGallery.style.display === 'none') {
+      getImagesFromRepo(folder).then(function (imageURLs) {
+        hiddenGallery.innerHTML = ''; // Clear any previous images
+        for (var i = 0; i < imageURLs.length; i++) {
+          var aTag = document.createElement('a');
+          aTag.href = imageURLs[i];
+          aTag.setAttribute('data-lightbox', `gallery-${folder}`);
+          aTag.setAttribute('data-title', 'Photo ' + (i + 1));
 
-            var imgTag = document.createElement('img');
-            imgTag.src = imageURLs[i];
-            imgTag.alt = 'Photo ' + (i + 1);
+          var imgTag = document.createElement('img');
+          imgTag.src = imageURLs[i];
+          imgTag.alt = 'Photo ' + (i + 1);
 
-            aTag.appendChild(imgTag);
-            hiddenGallery.appendChild(aTag);
-          }
+          aTag.appendChild(imgTag);
+          hiddenGallery.appendChild(aTag);
+        }
 
-          hiddenGallery.style.display = 'flex';
-          button.innerHTML = 'Bezárás';
+        hiddenGallery.style.display = 'flex';
+        button.innerHTML = 'Bezárás';
 
-          // Initialize SimpleLightbox after adding the images to the gallery
-          var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
-        });
-      } else {
-        hiddenGallery.innerHTML = '';
-        hiddenGallery.style.display = 'none';
-        button.innerHTML = `Galéria ${folder}`;
-      }
+        // Reinitialize SimpleLightbox for the new images
+        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
+      });
+    } else {
+      hiddenGallery.innerHTML = '';
+      hiddenGallery.style.display = 'none';
+      button.innerHTML = `Galéria ${folder}`;
     }
+  }
 
-    function getImagesFromRepo(folder) {
-      var username = 'balazsvamosi1';
-      var repo = 'balazsvamosi.github.io';
-      var path = 'assets/images/' + folder; // Set the correct path here
+  function getImagesFromRepo(folder) {
+    var username = 'balazsvamosi1';
+    var repo = 'balazsvamosi.github.io';
+    var path = 'assets/images/' + folder; // Set the correct path here
 
-      return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/' + path)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          var imageUrls = data.filter(function (item) {
-            return item.name.endsWith('.jpeg') || item.name.endsWith('.jpg');
-          }).map(function (item) {
-            return item.download_url;
-          });
-
-          return imageUrls;
+    return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/' + path)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        var imageUrls = data.filter(function (item) {
+          return item.name.endsWith('.jpeg') || item.name.endsWith('.jpg');
+        }).map(function (item) {
+          return item.download_url;
         });
-    }
-  </script>
+
+        return imageUrls;
+      });
+  }
+</script>
 </div>
 
 <div class="center-text">
