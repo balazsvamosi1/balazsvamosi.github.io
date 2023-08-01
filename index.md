@@ -5,34 +5,7 @@ background_image: "{{ site.background_images | sample }}"
 ---
 
 <style>
-  .center-text {
-    text-align: center;
-    margin: 0 auto;
-    max-width: 800px;
-  }
-
-  .center-buttons {
-    text-align: center;
-    margin-top: 20px;
-  }
-
-  .gallery-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-
-  #hidden-gallery img {
-    max-width: 70%;
-    max-height: 70vh;
-  }
+  /* Your existing styles here */
 </style>
 
 <div class="center-text">
@@ -41,20 +14,19 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Galéria section -->
 <div class="center-text">
-  <h2>Galéria 3 </h2>
+  <h2>Galéria 4 </h2>
   <!-- Add any additional content or description for the gallery here -->
 </div>
-
-<!-- Hidden gallery container -->
-<div id="hidden-gallery" style="display: none;"></div>
 
 <!-- Buttons to trigger the galleries -->
 <div class="center-buttons">
   <button onclick="showAjandekGallery()">Ajándék</button>
   <button onclick="showBogrekGallery()">Bögrék</button>
   <button onclick="showMandalakGallery()">Mandalák</button>
-<div id="hidden-gallery" style="display: none;"></div>
 </div>
+
+<!-- Hidden gallery container -->
+<div id="hidden-gallery" style="display: none;"></div>
 
 <!-- Kapcsolat section -->
 <div class="center-text">
@@ -68,8 +40,8 @@ background_image: "{{ site.background_images | sample }}"
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
 
-<!-- Initialize PhotoSwipe for each gallery -->
- function showAjandekGallery() {
+<script>
+  function showAjandekGallery() {
     showGallery('ajandek');
   }
 
@@ -80,7 +52,7 @@ background_image: "{{ site.background_images | sample }}"
   function showMandalakGallery() {
     showGallery('mandalak');
   }
-<script>
+
   function showGallery(folder) {
     var button = document.getElementById(`gallery-button${folder}`);
     var hiddenGallery = document.getElementById('hidden-gallery');
