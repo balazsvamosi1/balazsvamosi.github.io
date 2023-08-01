@@ -143,4 +143,24 @@ background_image: "{{ site.background_images | sample }}"
     // Function to open the PhotoSwipe gallery
     var openPhotoSwipe = function(index, galleryElement) {
       var pswpElement = document.querySelectorAll('.pswp')[0];
-      var items = parseThumbnailElements(galleryElement
+      var items = parseThumbnailElements(galleryElement);
+      var options = {
+        // Your options for PhotoSwipe (e.g., shareButtons, fullscreen, etc.)
+        index: index
+      };
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+      gallery.init();
+    };
+
+    // Find the gallery links within the specified selector
+    var galleryElements = document.querySelectorAll(gallerySelector);
+    for (var i = 0; i < galleryElements.length; i++) {
+      galleryElements[i].setAttribute('data-pswp-uid', i + 1);
+      galleryElements[i].onclick = function(e) {
+        e.preventDefault();
+        var index = parseInt(this.getAttribute('data-pswp-uid'), 10) - 1;
+        openPhotoSwipe(index, this);
+      };
+    }
+  }
+</script>
