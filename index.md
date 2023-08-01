@@ -45,14 +45,15 @@ background_image: "{{ site.background_images | sample }}"
   <!-- Add any additional content or description for the gallery here -->
 </div>
 
+<!-- Hidden gallery container -->
+<div id="hidden-gallery" style="display: none;"></div>
+
 <!-- Buttons to trigger the galleries -->
 <div class="center-buttons">
   <button id="gallery-button1" onclick="showGallery('ajandek')">Ajándék</button>
   <button id="gallery-button2" onclick="showGallery('bogrek')">Bögrék</button>
   <button id="gallery-button3" onclick="showGallery('mandalak')">Mandalák</button>
 </div>
-<!-- Hidden gallery container -->
-<div id="hidden-gallery" style="display: none;"></div>
 
 <!-- Kapcsolat section -->
 <div class="center-text">
@@ -142,15 +143,4 @@ background_image: "{{ site.background_images | sample }}"
     // Function to open the PhotoSwipe gallery
     var openPhotoSwipe = function(index, galleryElement) {
       var pswpElement = document.querySelectorAll('.pswp')[0];
-      var items = parseThumbnailElements(galleryElement);
-      var options = {
-        // Your options for PhotoSwipe (e.g., shareButtons, fullscreen, etc.)
-        index: index
-      };
-      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
-      gallery.init();
-    };
-
-    // Find the gallery links within the specified selector
-    var galleryElements = document.querySelectorAll(gallerySelector);
-    for (var i = 0; i < galleryElements
+      var items = parseThumbnailElements(galleryElement
