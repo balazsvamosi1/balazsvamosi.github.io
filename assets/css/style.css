@@ -5,6 +5,12 @@
   src: url('/assets/fonts/Borel-Regular.ttf') format('truetype'); /* Update the path to the font file */
 }
 
+/* New CSS styles to center buttons */
+.center-buttons {
+  display: flex;
+  justify-content: center;
+}
+
 body {
   font-family: 'Borel', sans-serif; /* Apply the custom font to the body */
   background-color: #ADD8E6;
