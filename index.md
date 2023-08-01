@@ -5,7 +5,7 @@ background_image: "{{ site.background_images | sample }}"
 ---
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE19! </h1>
+  <h1>Üdvözöllek az oldalamon !TEST PAGE20! </h1>
 
   <p>
    Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
@@ -48,57 +48,57 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
   
 <script>
-  function showGallery(folder) {
-    var button = document.getElementById(`gallery-button${folder}`);
-    var hiddenGallery = document.getElementById('hidden-gallery');
+var gallery;
 
-    if (hiddenGallery.style.display === 'none') {
-      getImagesFromRepo(folder).then(function (imageURLs) {
-        for (var i = 0; i < imageURLs.length; i++) {
-          var aTag = document.createElement('a');
-          aTag.href = imageURLs[i];
-          aTag.setAttribute('data-lightbox', `gallery-${folder}`);
-          aTag.setAttribute('data-title', 'Photo ' + (i + 1));
+function showGallery(folder) {
+  var button = document.getElementById(`gallery-button${folder}`);
+  var hiddenGallery = document.getElementById('hidden-gallery');
 
-          var imgTag = document.createElement('img');
-          imgTag.src = imageURLs[i];
-          imgTag.alt = 'Photo ' + (i + 1);
+  if (hiddenGallery.style.display === 'none') {
+    getImagesFromRepo(folder).then(function (imageURLs) {
+      hiddenGallery.innerHTML = ''; // Clear previous gallery items
+      
+      for (var i = 0; i < imageURLs.length; i++) {
+        var aTag = document.createElement('a');
+        aTag.href = imageURLs[i];
 
-          aTag.appendChild(imgTag);
-          hiddenGallery.appendChild(aTag);
-        }
+        var imgTag = document.createElement('img');
+        imgTag.src = imageURLs[i];
+        imgTag.alt = 'Photo ' + (i + 1);
 
-        hiddenGallery.style.display = 'flex';
-        button.innerHTML = 'Bezárás';
+        aTag.appendChild(imgTag);
+        hiddenGallery.appendChild(aTag);
+      }
 
-        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`, {
-          /* Optional PhotoSwipe options can be added here */
+      hiddenGallery.style.display = 'flex';
+      button.innerHTML = 'Bezárás';
+
+      // Initialize PhotoSwipe
+      var galleryElement = hiddenGallery.querySelectorAll('a');
+      var pswpElement = document.querySelectorAll('.pswp')[0];
+      var galleryItems = [];
+
+      for (var i = 0; i < galleryElement.length; i++) {
+        var item = galleryElement[i];
+        galleryItems.push({
+          src: item.href,
+          w: item.querySelector('img').naturalWidth,
+          h: item.querySelector('img').naturalHeight,
+          title: item.getAttribute('data-title')
         });
+      }
+
+      gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, galleryItems, {
+        index: 0, // Start at the first image
+        bgOpacity: 0.8,
+        showHideOpacity: true
       });
-    } else {
-      hiddenGallery.innerHTML = '';
-      hiddenGallery.style.display = 'none';
-      button.innerHTML = `Galéria ${folder}`;
-    }
+      gallery.init();
+    });
+  } else {
+    hiddenGallery.innerHTML = '';
+    hiddenGallery.style.display = 'none';
+    button.innerHTML = `Galéria ${folder}`;
   }
-
-  function getImagesFromRepo(folder) {
-    var username = 'balazsvamosi1';
-    var repo = 'balazsvamosi.github.io';
-    var path = 'assets/images/' + folder; // Set the correct path here
-
-    return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/' + path)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        var imageUrls = data.filter(function (item) {
-          return item.name.endsWith('.jpeg') || item.name.endsWith('.jpg');
-        }).map(function (item) {
-          return item.download_url;
-        });
-
-        return imageUrls;
-      });
-  }
+}  
 </script>
