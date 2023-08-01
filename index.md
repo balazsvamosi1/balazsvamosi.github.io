@@ -41,7 +41,7 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Galéria section -->
 <div class="center-text">
-  <h2>Galéria 4</h2>
+  <h2>Galéria 1</h2>
   <!-- Add any additional content or description for the gallery here -->
 </div>
 
@@ -50,7 +50,7 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Button to trigger the gallery -->
 <div class="center-buttons">
-  <button onclick="showGallery('ajandek')">Ajándék</button>
+  <button onclick="showGallery()">Ajándék</button>
 </div>
 
 <!-- Kapcsolat section -->
@@ -67,17 +67,17 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Initialize PhotoSwipe for the first gallery -->
 <script>
-  function showGallery(folder) {
-    var button = document.getElementById('gallery-button');
+  function showGallery() {
+    var button = document.querySelector('button');
     var hiddenGallery = document.getElementById('hidden-gallery');
 
     if (hiddenGallery.style.display === 'none') {
-      getImagesFromRepo(folder).then(function (imageURLs) {
+      getImagesFromRepo('ajandek').then(function (imageURLs) {
         hiddenGallery.innerHTML = ''; // Clear previous images
         for (var i = 0; i < imageURLs.length; i++) {
           var aTag = document.createElement('a');
           aTag.href = imageURLs[i];
-          aTag.setAttribute('data-lightbox', `gallery-${folder}`);
+          aTag.setAttribute('data-lightbox', 'gallery');
           aTag.setAttribute('data-title', 'Photo ' + (i + 1));
 
           var imgTag = document.createElement('img');
@@ -91,7 +91,7 @@ background_image: "{{ site.background_images | sample }}"
         hiddenGallery.style.display = 'flex';
         button.innerHTML = 'Bezárás';
 
-        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
+        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery"]`);
       });
     } else {
       hiddenGallery.innerHTML = '';
