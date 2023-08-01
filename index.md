@@ -51,77 +51,14 @@ background_image: "{{ site.background_images | sample }}"
   <button id="gallery-button2" onclick="showGallery('bogrek')">Bögrék</button>
   <button id="gallery-button3" onclick="showGallery('mandalak')">Mandalák</button>
 </div>
+
 <!-- Hidden gallery container -->
 <div id="hidden-gallery" style="display: none;"></div>
 
-<!-- Kapcsolat section -->
-<div class="center-text">
-  <h2>Kapcsolat</h2>
-  <p>
-    További festményekért és árakért érdeklődj: hjudit64(kukac)gmail.com címen
-  </p>
-</div>
-
-<!-- PhotoSwipe scripts and stylesheets -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css">
-
+<!-- Script to initialize PhotoSwipe from the gallery links -->
 <script>
-  function showGallery(folder) {
-    var button = document.getElementById(`gallery-button${folder}`);
-    var hiddenGallery = document.getElementById('hidden-gallery');
-
-    if (hiddenGallery.style.display === 'none') {
-      getImagesFromRepo(folder).then(function (imageURLs) {
-        for (var i = 0; i < imageURLs.length; i++) {
-          var aTag = document.createElement('a');
-          aTag.href = imageURLs[i];
-
-          var imgTag = document.createElement('img');
-          imgTag.src = imageURLs[i];
-          imgTag.alt = 'Photo ' + (i + 1);
-
-          aTag.appendChild(imgTag);
-          hiddenGallery.appendChild(aTag);
-        }
-
-        hiddenGallery.style.display = 'flex';
-        button.innerHTML = 'Bezárás';
-
-        initPhotoSwipeFromDOM(`#hidden-gallery`);
-      });
-    } else {
-      hiddenGallery.innerHTML = '';
-      hiddenGallery.style.display = 'none';
-      button.innerHTML = `Galéria ${folder}`;
-    }
-  }
-
-  function getImagesFromRepo(folder) {
-    var username = 'balazsvamosi1';
-    var repo = 'balazsvamosi.github.io';
-    var path = 'assets/images/' + folder; // Set the correct path here
-
-    return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/' + path)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        var imageUrls = data.filter(function (item) {
-          return item.name.endsWith('.jpeg') || item.name.endsWith('.jpg');
-        }).map(function (item) {
-          return item.download_url;
-        });
-
-        return imageUrls;
-      });
-  }
-
-  // Function to initialize PhotoSwipe from the gallery links
   function initPhotoSwipeFromDOM(gallerySelector) {
-    var parseThumbnailElements = function (el) {
+    var parseThumbnailElements = function(el) {
       // Function to parse gallery links and return PhotoSwipe items array
       // You may need to modify this based on your specific image source
       var thumbElements = el.childNodes;
@@ -141,7 +78,7 @@ background_image: "{{ site.background_images | sample }}"
     };
 
     // Function to open the PhotoSwipe gallery
-    var openPhotoSwipe = function (index, galleryElement) {
+    var openPhotoSwipe = function(index, galleryElement) {
       var pswpElement = document.querySelectorAll('.pswp')[0];
       var items = parseThumbnailElements(galleryElement);
       var options = {
@@ -156,11 +93,18 @@ background_image: "{{ site.background_images | sample }}"
     var galleryElements = document.querySelectorAll(gallerySelector);
     for (var i = 0; i < galleryElements.length; i++) {
       galleryElements[i].setAttribute('data-pswp-uid', i + 1);
-      galleryElements[i].onclick = function (e) {
+      galleryElements[i].onclick = function(e) {
         e.preventDefault();
         var index = parseInt(this.getAttribute('data-pswp-uid'), 10) - 1;
         openPhotoSwipe(index, this);
       };
     }
   }
+</script>
+
+<!-- Initialize PhotoSwipe after the content is loaded -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    initPhotoSwipeFromDOM('#hidden-gallery');
+  });
 </script>
