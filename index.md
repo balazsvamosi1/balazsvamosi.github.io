@@ -5,7 +5,7 @@ background_image: "{{ site.background_images | sample }}"
 ---
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE4! </h1>
+  <h1>Üdvözöllek az oldalamon !TEST PAGE5! </h1>
 
   <p>
    Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
@@ -68,8 +68,6 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
         for (var i = 0; i < imageURLs.length; i++) {
           var aTag = document.createElement('a');
           aTag.href = imageURLs[i];
-          aTag.setAttribute('data-lightbox', `gallery-${folder}`);
-          aTag.setAttribute('data-title', 'Photo ' + (i + 1));
 
           var imgTag = document.createElement('img');
           imgTag.src = imageURLs[i];
@@ -81,9 +79,6 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
 
         hiddenGallery.style.display = 'flex';
         button.innerHTML = 'Bezárás';
-
-        // Reinitialize SimpleLightbox for the new images
-        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
       });
     } else {
       hiddenGallery.innerHTML = '';
