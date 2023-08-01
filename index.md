@@ -33,23 +33,7 @@ background_image: "{{ site.background_images | sample }}"
 </style>
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE14! </h1>
-
-  <p>
-    Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
-
-    A munkáim inspirációját a hagyományos ausztrál őslakosok, az Aboriginal Australians pontfestészete adja. Ez az ősi művészetforma a homokba és a földre való apró pontokkal történő ábrázolást jelenti, amelyeket szent jelentésekkel és történetekkel ruháztak fel a törzsi kultúrákban.
-
-    Ezeket a hagyományokat és az ausztrál kultúra mély tiszteletét hordozva alkottam meg ezeket a festményeket. Remélem, hogy a művészeti alkotásaimban megtalálod azt a kis csodát, amelyet én is átéltem az alkotásuk közben.
-
-    Az online galériámban számos kép található, amelyek között megtalálod az örömteli és mély gondolatokat ébresztő alkotásokat is. Nézz körül, és fedezd fel a színek és formák gazdag világát!
-
-    Ha bármilyen kérdésed van az alkotásaimmal kapcsolatban vagy érdeklődsz egy-egy festményem iránt, ne habozz felvenni velem a kapcsolatot. Örömmel válaszolok minden megkeresésre.
-
-    Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által éppolyan élményeket élhetsz át, mint én alkotás közben.
-  </p>
-
-  <h2>Galéria</h2>
+  {% include_relative _includes/introduction.html %}
 </div>
 
 <!-- Buttons to trigger the galleries -->
