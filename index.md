@@ -49,7 +49,7 @@ background_image: "{{ site.background_images | sample }}"
 
   <script>
     function showGallery(folder) {
-      var button = document.getElementById('gallery-button1');
+      var button = document.getElementById(`gallery-button${folder}`);
       var hiddenGallery = document.getElementById('hidden-gallery');
 
       if (hiddenGallery.style.display === 'none') {
@@ -57,7 +57,7 @@ background_image: "{{ site.background_images | sample }}"
           for (var i = 0; i < imageURLs.length; i++) {
             var aTag = document.createElement('a');
             aTag.href = imageURLs[i];
-            aTag.setAttribute('data-lightbox', 'gallery');
+            aTag.setAttribute('data-lightbox', `gallery-${folder}`);
             aTag.setAttribute('data-title', 'Photo ' + (i + 1));
 
             var imgTag = document.createElement('img');
@@ -71,12 +71,12 @@ background_image: "{{ site.background_images | sample }}"
           hiddenGallery.style.display = 'flex';
           button.innerHTML = 'Bezárás';
 
-          var gallery = new SimpleLightbox('#hidden-gallery a');
+          var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
         });
       } else {
         hiddenGallery.innerHTML = '';
         hiddenGallery.style.display = 'none';
-        button.innerHTML = 'Galéria 1';
+        button.innerHTML = `Galéria ${folder}`;
       }
     }
 
@@ -103,8 +103,4 @@ background_image: "{{ site.background_images | sample }}"
 </div>
 
 <div class="center-text">
-  <h2>Kapcsolat</h2>
-  <p>
-    További festményekért és árakért érdeklődj: hjudit64(kukac)gmail.com címen
-  </p>
-</div>
+  <h
