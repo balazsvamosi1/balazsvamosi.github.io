@@ -32,7 +32,7 @@ background_image: "{{ site.background_images | sample }}"
 
   /* Scale the thumbnails to 30% of the original size */
   .thumbnail img {
-    max-width: 30%;
+    max-width: 10%;
     max-height: auto;
   }
 </style>
@@ -43,7 +43,7 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Galéria section -->
 <div class="center-text">
-  <h2>Galéria 1</h2>
+  <h2>Galéria</h2>
   <!-- Add any additional content or description for the gallery here -->
 </div>
 
@@ -57,7 +57,7 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Galéria section -->
 <div class="center-text">
-  <h2>Galéria 2</h2>
+  <h2> </h2>
   <!-- Add any additional content or description for the gallery here -->
 </div>
 
@@ -67,6 +67,20 @@ background_image: "{{ site.background_images | sample }}"
 <!-- Button to trigger Galéria 2 -->
 <div class="center-text">
   <button onclick="showBogrekGallery()">Bögrék</button>
+</div>
+
+<!-- Galéria section -->
+<div class="center-text">
+  <h2> </h2>
+  <!-- Add any additional content or description for the gallery here -->
+</div>
+
+<!-- Hidden gallery container for Galéria 3 -->
+<div id="hidden-gallery-mandalak" style="display: none;"></div>
+
+<!-- Button to trigger Galéria 3 -->
+<div class="center-text">
+  <button onclick="showMandalakGallery()">Mandalák</button>
 </div>
 
 <!-- Kapcsolat section -->
@@ -155,6 +169,45 @@ background_image: "{{ site.background_images | sample }}"
       hiddenGallery.innerHTML = '';
       hiddenGallery.style.display = 'none';
       button.innerHTML = 'Bögrék';
+    }
+  }
+</script>
+
+<!-- Function for Galéria 3 -->
+<script>
+  function showMandalakGallery() {
+    var button = document.querySelector('button[onclick="showMandalakGallery()"]');
+    var hiddenGallery = document.getElementById('hidden-gallery-mandalak');
+
+    if (hiddenGallery.style.display === 'none') {
+      getImagesFromRepo('mandalak').then(function (imageURLs) {
+        hiddenGallery.innerHTML = ''; // Clear previous images
+        for (var i = 0; i < imageURLs.length; i++) {
+          var aTag = document.createElement('a');
+          aTag.href = imageURLs[i];
+          aTag.setAttribute('data-lightbox', 'gallery-mandalak');
+          aTag.setAttribute('data-title', 'Photo ' + (i + 1));
+
+          var imgTag = document.createElement('img');
+          imgTag.src = imageURLs[i];
+          imgTag.alt = 'Photo ' + (i + 1);
+
+          var thumbnailDiv = document.createElement('div');
+          thumbnailDiv.classList.add('thumbnail');
+          thumbnailDiv.appendChild(imgTag);
+          aTag.appendChild(thumbnailDiv);
+          hiddenGallery.appendChild(aTag);
+        }
+
+        hiddenGallery.style.display = 'flex';
+        button.innerHTML = 'Bezárás';
+
+        var gallery = new SimpleLightbox('#hidden-gallery-mandalak a');
+      });
+    } else {
+      hiddenGallery.innerHTML = '';
+      hiddenGallery.style.display = 'none';
+      button.innerHTML = 'Mandalák';
     }
   }
 </script>
