@@ -46,7 +46,32 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
-  
+   <style>
+    .center-text {
+      text-align: center;
+      margin: 0 auto;
+      max-width: 800px; /* Set a maximum width for better presentation */
+    }
+
+    .gallery-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* Scale the images in the pop-up to 70% of the screen size */
+    #hidden-gallery img {
+      max-width: 70%;
+      max-height: 70vh;
+    }
+  </style>
 <script>
 var gallery;
 
