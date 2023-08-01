@@ -119,56 +119,56 @@ background_image: "{{ site.background_images | sample }}"
   }
 
   // Function to initialize PhotoSwipe from the gallery links
+ // <!-- Script to initialize PhotoSwipe from the gallery links -->
+<script>
   function initPhotoSwipeFromDOM(gallerySelector) {
-  // Get the gallery element
-  var galleryElement = document.querySelector(gallerySelector);
-
-  // Find all the link elements within the gallery element
-  var galleryItems = galleryElement.getElementsByTagName('a');
-
-  // Create an array to store the slides
-  var slides = [];
-
-  // Loop through each link element and add it to the slides array
-  for (var i = 0; i < galleryItems.length; i++) {
-    var item = galleryItems[i];
-
-    // Create a slide object for each link element
-    var slide = {
-      src: item.getAttribute('href'),
-      w: parseInt(item.getAttribute('data-width')),
-      h: parseInt(item.getAttribute('data-height')),
-      title: item.getAttribute('data-title')
+    var parseThumbnailElements = function(el) {
+      // Function to parse gallery links and return PhotoSwipe items array
+      // You may need to modify this based on your specific image source
+      var thumbElements = el.childNodes;
+      var items = [];
+      for (var i = 0; i < thumbElements.length; i++) {
+        var linkEl = thumbElements[i].querySelector('a');
+        var size = linkEl.getAttribute('data-size').split('x');
+        var item = {
+          src: linkEl.getAttribute('href'),
+          w: parseInt(size[0], 10),
+          h: parseInt(size[1], 10),
+          title: linkEl.getAttribute('data-title')
+        };
+        items.push(item);
+      }
+      return items;
     };
 
-    // Add the slide object to the slides array
-    slides.push(slide);
+    // Function to open the PhotoSwipe gallery
+    var openPhotoSwipe = function(index, galleryElement) {
+      var pswpElement = document.querySelectorAll('.pswp')[0];
+      var items = parseThumbnailElements(galleryElement);
+      var options = {
+        // Your options for PhotoSwipe (e.g., shareButtons, fullscreen, etc.)
+        index: index
+      };
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+      gallery.init();
+    };
+
+    // Find the gallery links within the specified selector
+    var galleryElements = document.querySelectorAll(gallerySelector);
+    for (var i = 0; i < galleryElements.length; i++) {
+      galleryElements[i].setAttribute('data-pswp-uid', i + 1);
+      galleryElements[i].onclick = function(e) {
+        e.preventDefault();
+        var index = parseInt(this.getAttribute('data-pswp-uid'), 10) - 1;
+        openPhotoSwipe(index, this);
+      };
+    }
   }
+</script>
 
-  // Define PhotoSwipe options (customize as needed)
-  var options = {
-    index: 0, // Starting slide index
-    bgOpacity: 0.8, // Background opacity
-    history: false, // Disable history/back button
-    showHideOpacity: true // Show/hide the gallery using opacity
-  };
-
-  // Generate PhotoSwipe instance
-  var gallery = new PhotoSwipe(
-    document.querySelectorAll('.pswp')[0],
-    PhotoSwipeUI_Default,
-    slides,
-    options
-  );
-
-  // Bind event listener for close button click
-  gallery.listen('close', function () {
-    // Reset the gallery on close
-    gallery.close();
-    gallery = null;
+<!-- Initialize PhotoSwipe after the content is loaded -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    initPhotoSwipeFromDOM('#hidden-gallery');
   });
-
-  // Initialize PhotoSwipe
-  gallery.init();
-}
 </script>
