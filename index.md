@@ -5,7 +5,7 @@ background_image: "{{ site.background_images | sample }}"
 ---
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE3! </h1>
+  <h1>Üdvözöllek az oldalamon !TEST PAGE4! </h1>
 
   <p>
    Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
@@ -21,9 +21,9 @@ Ha bármilyen kérdésed van az alkotásaimmal kapcsolatban vagy érdeklődsz eg
 Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által éppolyan élményeket élhetsz át, mint én alkotás közben..
   </p>
 
-  <button id="gallery-button1" onclick="showGallery('ajandek')">Galéria 1</button>
-  <button id="gallery-button2" onclick="showGallery('bogrek')">Galéria 2</button>
-  <button id="gallery-button3" onclick="showGallery('mandalak')">Galéria 3</button>
+  <button id="gallery-button1" onclick="showGallery('ajandek')">Ajándék</button>
+  <button id="gallery-button2" onclick="showGallery('bogrek')">Bögrék</button>
+  <button id="gallery-button3" onclick="showGallery('mandalak')">Mandalák</button>
 
   <div id="hidden-gallery" style="display: none;"></div>
 
