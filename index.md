@@ -5,48 +5,34 @@ background_image: "{{ site.background_images | sample }}"
 ---
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE20! </h1>
+  <h1>Üdvözöllek az oldalamon !TEST PAGE21! </h1>
 
   <p>
    Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
 
-A munkáim inspirációját a hagyományos ausztrál őslakosok, az Aboriginal Australians pontfestészete adja. Ez az ősi művészetforma a homokba és a földre való apró pontokkal történő ábrázolást jelenti, amelyeket szent jelentésekkel és történetekkel ruháztak fel a törzsi kultúrákban. 
+   A munkáim inspirációját a hagyományos ausztrál őslakosok, az Aboriginal Australians pontfestészete adja. Ez az ősi művészetforma a homokba és a földre való apró pontokkal történő ábrázolást jelenti, amelyeket szent jelentésekkel és történetekkel ruháztak fel a törzsi kultúrákban.
 
-Ezeket a hagyományokat és az ausztrál kultúra mély tiszteletét hordozva alkottam meg ezeket a festményeket. Remélem, hogy a művészeti alkotásaimban megtalálod azt a kis csodát, amelyet én is átéltem az alkotásuk közben.
+   Ezeket a hagyományokat és az ausztrál kultúra mély tiszteletét hordozva alkottam meg ezeket a festményeket. Remélem, hogy a művészeti alkotásaimban megtalálod azt a kis csodát, amelyet én is átéltem az alkotásuk közben.
 
-Az online galériámban számos kép található, amelyek között megtalálod az örömteli és mély gondolatokat ébresztő alkotásokat is. Nézz körül, és fedezd fel a színek és formák gazdag világát!
+   Az online galériámban számos kép található, amelyek között megtalálod az örömteli és mély gondolatokat ébresztő alkotásokat is. Nézz körül, és fedezd fel a színek és formák gazdag világát!
 
-Ha bármilyen kérdésed van az alkotásaimmal kapcsolatban vagy érdeklődsz egy-egy festményem iránt, ne habozz felvenni velem a kapcsolatot. Örömmel válaszolok minden megkeresésre.
+   Ha bármilyen kérdésed van az alkotásaimmal kapcsolatban vagy érdeklődsz egy-egy festményem iránt, ne habozz felvenni velem a kapcsolatot. Örömmel válaszolok minden megkeresésre.
 
-Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által éppolyan élményeket élhetsz át, mint én alkotás közben..
+   Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által éppolyan élményeket élhetsz át, mint én alkotás közben..
   </p>
 
-<div class="center-text">
-  <h2>Galéria</h2>
-  <p>
-    
-  </p>
+  <div class="center-text">
+    <h2>Galéria</h2>
+    <p></p>
+  </div>
 
   <button id="gallery-button1" onclick="showGallery('ajandek')">Ajándék</button>
   <button id="gallery-button2" onclick="showGallery('bogrek')">Bögrék</button>
   <button id="gallery-button3" onclick="showGallery('mandalak')">Mandalák</button>
 
   <div id="hidden-gallery" style="display: none;"></div>
-</div>
 
-  <div class="center-text">
-  <h2>Kapcsolat</h2>
-  <p>
-    További festményekért és árakért érdeklődj: hjudit64(kukac)gmail.com címen
-  </p>
-  </div>
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
-   <style>
+  <style>
     .center-text {
       text-align: center;
       margin: 0 auto;
@@ -72,58 +58,65 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
       max-height: 70vh;
     }
   </style>
+</div>
+
+<div class="center-text">
+  <h2>Kapcsolat</h2>
+  <p>
+    További festményekért és árakért érdeklődj: hjudit64(kukac)gmail.com címen
+  </p>
+</div>
+
 <script>
-var gallery;
+  function showGallery(folder) {
+    var button = document.getElementById(`gallery-button${folder}`);
+    var hiddenGallery = document.getElementById('hidden-gallery');
 
-function showGallery(folder) {
-  var button = document.getElementById(`gallery-button${folder}`);
-  var hiddenGallery = document.getElementById('hidden-gallery');
+    if (hiddenGallery.style.display === 'none') {
+      getImagesFromRepo(folder).then(function (imageURLs) {
+        for (var i = 0; i < imageURLs.length; i++) {
+          var aTag = document.createElement('a');
+          aTag.href = imageURLs[i];
+          aTag.setAttribute('data-lightbox', `gallery-${folder}`);
+          aTag.setAttribute('data-title', 'Photo ' + (i + 1));
 
-  if (hiddenGallery.style.display === 'none') {
-    getImagesFromRepo(folder).then(function (imageURLs) {
-      hiddenGallery.innerHTML = ''; // Clear previous gallery items
-      
-      for (var i = 0; i < imageURLs.length; i++) {
-        var aTag = document.createElement('a');
-        aTag.href = imageURLs[i];
+          var imgTag = document.createElement('img');
+          imgTag.src = imageURLs[i];
+          imgTag.alt = 'Photo ' + (i + 1);
 
-        var imgTag = document.createElement('img');
-        imgTag.src = imageURLs[i];
-        imgTag.alt = 'Photo ' + (i + 1);
+          aTag.appendChild(imgTag);
+          hiddenGallery.appendChild(aTag);
+        }
 
-        aTag.appendChild(imgTag);
-        hiddenGallery.appendChild(aTag);
-      }
+        hiddenGallery.style.display = 'flex';
+        button.innerHTML = 'Bezárás';
 
-      hiddenGallery.style.display = 'flex';
-      button.innerHTML = 'Bezárás';
-
-      // Initialize PhotoSwipe
-      var galleryElement = hiddenGallery.querySelectorAll('a');
-      var pswpElement = document.querySelectorAll('.pswp')[0];
-      var galleryItems = [];
-
-      for (var i = 0; i < galleryElement.length; i++) {
-        var item = galleryElement[i];
-        galleryItems.push({
-          src: item.href,
-          w: item.querySelector('img').naturalWidth,
-          h: item.querySelector('img').naturalHeight,
-          title: item.getAttribute('data-title')
-        });
-      }
-
-      gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, galleryItems, {
-        index: 0, // Start at the first image
-        bgOpacity: 0.8,
-        showHideOpacity: true
+        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
       });
-      gallery.init();
-    });
-  } else {
-    hiddenGallery.innerHTML = '';
-    hiddenGallery.style.display = 'none';
-    button.innerHTML = `Galéria ${folder}`;
+    } else {
+      hiddenGallery.innerHTML = '';
+      hiddenGallery.style.display = 'none';
+      button.innerHTML = `Galéria ${folder}`;
+    }
   }
-}  
+
+  function getImagesFromRepo(folder) {
+    var username = 'balazsvamosi1';
+    var repo = 'balazsvamosi.github.io';
+    var path = 'assets/images/' + folder; // Set the correct path here
+
+    return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/' + path)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        var imageUrls = data.filter(function (item) {
+          return item.name.endsWith('.jpeg') || item.name.endsWith('.jpg');
+        }).map(function (item) {
+          return item.download_url;
+        });
+
+        return imageUrls;
+      });
+  }
 </script>
