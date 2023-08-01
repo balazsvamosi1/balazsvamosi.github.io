@@ -41,21 +41,19 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Galéria section -->
 <div class="center-text">
-  <h2>Galéria 5</h2>
+  <h2>Galéria 3 </h2>
   <!-- Add any additional content or description for the gallery here -->
 </div>
 
+<!-- Hidden gallery container -->
+<div id="hidden-gallery" style="display: none;"></div>
+
 <!-- Buttons to trigger the galleries -->
 <div class="center-buttons">
-  <button onclick="showAjandekGallery()">Ajándék</button>
-  <button onclick="showBogrekGallery()">Bögrék</button>
-  <button onclick="showMandalakGallery()">Mandalák</button>
+  <button id="gallery-button-ajandek" onclick="showGallery('ajandek')">Ajándék</button>
+  <button id="gallery-button-bogrek" onclick="showGallery('bogrek')">Bögrék</button>
+  <button id="gallery-button-mandalak" onclick="showGallery('mandalak')">Mandalák</button>
 </div>
-
-<!-- Hidden gallery containers -->
-<div id="hidden-gallery-ajandek" style="display: none;"></div>
-<div id="hidden-gallery-bogrek" style="display: none;"></div>
-<div id="hidden-gallery-mandalak" style="display: none;"></div>
 
 <!-- Kapcsolat section -->
 <div class="center-text">
@@ -69,23 +67,10 @@ background_image: "{{ site.background_images | sample }}"
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
 
-<!-- Initialize PhotoSwipe for each gallery -->
 <script>
-  function showAjandekGallery() {
-    showGallery('ajandek');
-  }
-
-  function showBogrekGallery() {
-    showGallery('bogrek');
-  }
-
-  function showMandalakGallery() {
-    showGallery('mandalak');
-  }
-
   function showGallery(folder) {
-    var button = document.getElementById(`gallery-button${folder}`);
-    var hiddenGallery = document.getElementById(`hidden-gallery-${folder}`);
+    var button = document.getElementById(`gallery-button-${folder}`);
+    var hiddenGallery = document.getElementById('hidden-gallery');
 
     if (hiddenGallery.style.display === 'none') {
       getImagesFromRepo(folder).then(function (imageURLs) {
@@ -107,7 +92,7 @@ background_image: "{{ site.background_images | sample }}"
         hiddenGallery.style.display = 'flex';
         button.innerHTML = 'Bezárás';
 
-        initPhotoSwipeFromDOM(`#hidden-gallery-${folder} [data-lightbox="gallery-${folder}"]`);
+        initPhotoSwipeFromDOM(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
       });
     } else {
       hiddenGallery.innerHTML = '';
@@ -134,10 +119,5 @@ background_image: "{{ site.background_images | sample }}"
 
         return imageUrls;
       });
-  }
-
-  // Function to initialize PhotoSwipe from the gallery links
-  function initPhotoSwipeFromDOM(gallerySelector) {
-    // Your PhotoSwipe initialization code here
   }
 </script>
