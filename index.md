@@ -3,6 +3,10 @@ layout: default
 title: My Photo Gallery
 background_image: "{{ site.background_images | sample }}"
 ---
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
 
 <div class="center-text">
   <h1>Üdvözöllek az oldalamon !TEST PAGE8! </h1>
@@ -63,7 +67,7 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
       max-height: 70vh;
     }
   </style>
- <script>
+<script>
   function showGallery(folder) {
     var button = document.getElementById(`gallery-button${folder}`);
     var hiddenGallery = document.getElementById('hidden-gallery');
@@ -74,7 +78,7 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
         for (var i = 0; i < imageURLs.length; i++) {
           var aTag = document.createElement('a');
           aTag.href = imageURLs[i];
-          aTag.setAttribute('data-lightbox', `gallery-${folder}`);
+          aTag.setAttribute('data-size', '1200x900');
           aTag.setAttribute('data-title', 'Photo ' + (i + 1));
 
           var imgTag = document.createElement('img');
@@ -88,9 +92,11 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
         hiddenGallery.style.display = 'flex';
         button.innerHTML = 'Bezárás';
 
-        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
-        gallery.on('close.simplelightbox', function () {
-          hiddenGallery.innerHTML = '';
+        var pswpElement = document.querySelectorAll('.pswp')[0];
+        var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, hiddenGallery.querySelectorAll('a'), { index: 0 });
+        gallery.init();
+
+        gallery.listen('close', function () {
           hiddenGallery.style.display = 'none';
           button.innerHTML = `Galéria ${folder}`;
         });
