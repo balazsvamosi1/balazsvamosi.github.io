@@ -4,21 +4,9 @@ title: My Photo Gallery
 background_image: "{{ site.background_images | sample }}"
 ---
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
+
 <style>
-  body {
-    font-family: 'Borel', sans-serif;
-    background-color: #ADD8E6;
-    margin: 0;
-    padding: 0;
-  }
-
-  header {
-    background-image: url('https://github.com/balazsvamosi1/balazsvamosi.github.io/blob/gh-pages/assets/images/header-image.jpeg?raw=true');
-    background-size: cover;
-    background-position: center;
-    height: 200px;
-  }
-
   .center-text {
     text-align: center;
     margin: 0 auto;
@@ -38,7 +26,6 @@ background_image: "{{ site.background_images | sample }}"
     z-index: 9999;
   }
 
-  /* Scale the images in the pop-up to 70% of the screen size */
   #hidden-gallery img {
     max-width: 70%;
     max-height: 70vh;
@@ -46,12 +33,12 @@ background_image: "{{ site.background_images | sample }}"
 </style>
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE26! </h1>
+  <h1>Üdvözöllek az oldalamon !TEST PAGE14! </h1>
 
   <p>
     Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
 
-    A munkáim inspirációját a hagyományos ausztrál őslakosok, az Aboriginal Australians pontfestészete adja. Ez az ősi művészetforma a homokba és a földre való apró pontokkal történő ábrázolást jelenti, amelyeket szent jelentésekkel és történetekkel ruháztak fel a törzsi kultúrákban. 
+    A munkáim inspirációját a hagyományos ausztrál őslakosok, az Aboriginal Australians pontfestészete adja. Ez az ősi művészetforma a homokba és a földre való apró pontokkal történő ábrázolást jelenti, amelyeket szent jelentésekkel és történetekkel ruháztak fel a törzsi kultúrákban.
 
     Ezeket a hagyományokat és az ausztrál kultúra mély tiszteletét hordozva alkottam meg ezeket a festményeket. Remélem, hogy a művészeti alkotásaimban megtalálod azt a kis csodát, amelyet én is átéltem az alkotásuk közben.
 
@@ -59,11 +46,9 @@ background_image: "{{ site.background_images | sample }}"
 
     Ha bármilyen kérdésed van az alkotásaimmal kapcsolatban vagy érdeklődsz egy-egy festményem iránt, ne habozz felvenni velem a kapcsolatot. Örömmel válaszolok minden megkeresésre.
 
-    Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által éppolyan élményeket élhetsz át, mint én alkotás közben..
+    Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által éppolyan élményeket élhetsz át, mint én alkotás közben.
   </p>
-</div>
 
-<div class="center-text">
   <h2>Galéria</h2>
 </div>
 
@@ -74,6 +59,13 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Hidden gallery container -->
 <div id="hidden-gallery" style="display: none;"></div>
+
+<div class="center-text">
+  <h2>Kapcsolat</h2>
+  <p>
+    További festményekért és árakért érdeklődj: hjudit64(kukac)gmail.com címen
+  </p>
+</div>
 
 <script>
   function showGallery(folder) {
@@ -99,10 +91,7 @@ background_image: "{{ site.background_images | sample }}"
         hiddenGallery.style.display = 'flex';
         button.innerHTML = 'Bezárás';
 
-        // Initialize PhotoSwipe
-        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`, {
-          // Customize PhotoSwipe options here if needed
-        });
+        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
       });
     } else {
       hiddenGallery.innerHTML = '';
@@ -132,9 +121,4 @@ background_image: "{{ site.background_images | sample }}"
   }
 </script>
 
-<div class="center-text">
-  <h2>Kapcsolat</h2>
-  <p>
-    További festményekért és árakért érdeklődj: hjudit64(kukac)gmail.com címen
-  </p>
-</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
