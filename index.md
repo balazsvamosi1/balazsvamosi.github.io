@@ -37,7 +37,7 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Galéria section -->
 <div class="center-text">
-  <h2>Galéria 1</h2>
+  <h2>Galéria 111</h2>
   <!-- Add any additional content or description for the gallery here -->
 </div>
 
