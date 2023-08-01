@@ -5,7 +5,7 @@ background_image: "{{ site.background_images | sample }}"
 ---
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE7! </h1>
+  <h1>Üdvözöllek az oldalamon !TEST PAGE8! </h1>
 
   <p>
    Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
@@ -24,7 +24,7 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
 <div class="center-text">
   <h2>Galéria</h2>
   <p>
-    További festményekért és árakért érdeklődj: hjudit64(kukac)gmail.com címen
+    
   </p>
 </div>
 
@@ -89,6 +89,11 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
         button.innerHTML = 'Bezárás';
 
         var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
+        gallery.on('close.simplelightbox', function () {
+          hiddenGallery.innerHTML = '';
+          hiddenGallery.style.display = 'none';
+          button.innerHTML = `Galéria ${folder}`;
+        });
       });
     } else {
       hiddenGallery.innerHTML = '';
