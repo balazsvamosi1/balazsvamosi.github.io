@@ -5,13 +5,15 @@ background_image: "{{ site.background_images | sample }}"
 ---
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon! !TEST page!</h1>
+  <h1>Üdvözöllek az oldalamon! !TEST PAGE! </h1>
 
   <p>
     A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészetének egyedülálló és szerves része. Kezdetben a homokba, földre pöttyözték az ábrákat, mintákat, mely törzsi történeteknek szent jelentései voltak. Egy-egy festmény adott szertartáshoz, rituáléhoz tartozott. A beavatatlanok soha nem láthatták ezeket a rajzokat, szent mintákat, mivel a földet újra elsimították a szertartás után.
   </p>
 
-  <button id="gallery-button" onclick="showGallery()">Galéria</button>
+  <button id="gallery-button1" onclick="showGallery('folder1')">Galéria 1</button>
+  <button id="gallery-button2" onclick="showGallery('folder2')">Galéria 2</button>
+  <button id="gallery-button3" onclick="showGallery('folder3')">Galéria 3</button>
 
   <div id="hidden-gallery" style="display: none;"></div>
 
@@ -19,24 +21,7 @@ background_image: "{{ site.background_images | sample }}"
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
 
   <style>
-    .center-text {
-      text-align: center;
-      margin: 0 auto;
-      max-width: 800px; /* Set a maximum width for better presentation */
-    }
-
-    .gallery-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
+    /* Your CSS styles here */
 
     /* Scale the images in the pop-up to 70% of the screen size */
     #hidden-gallery img {
@@ -46,12 +31,12 @@ background_image: "{{ site.background_images | sample }}"
   </style>
 
   <script>
-    function showGallery() {
+    function showGallery(folder) {
       var button = document.getElementById('gallery-button');
       var hiddenGallery = document.getElementById('hidden-gallery');
 
       if (hiddenGallery.style.display === 'none') {
-        getImagesFromRepo().then(function (imageURLs) {
+        getImagesFromRepo(folder).then(function (imageURLs) {
           for (var i = 0; i < imageURLs.length; i++) {
             var aTag = document.createElement('a');
             aTag.href = imageURLs[i];
@@ -78,11 +63,11 @@ background_image: "{{ site.background_images | sample }}"
       }
     }
 
-    function getImagesFromRepo() {
+    function getImagesFromRepo(folder) {
       var username = 'balazsvamosi1';
       var repo = 'balazsvamosi.github.io';
 
-      return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/')
+      return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/' + folder)
         .then(function (response) {
           return response.json();
         })
