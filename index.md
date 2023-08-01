@@ -5,7 +5,7 @@ background_image: "{{ site.background_images | sample }}"
 ---
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE16! </h1>
+  <h1>Üdvözöllek az oldalamon !TEST PAGE17! </h1>
 
   <p>
    Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
@@ -26,14 +26,14 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
   <p>
     
   </p>
-</div>
 
   <button id="gallery-button1" onclick="showGallery('ajandek')">Ajándék</button>
   <button id="gallery-button2" onclick="showGallery('bogrek')">Bögrék</button>
   <button id="gallery-button3" onclick="showGallery('mandalak')">Mandalák</button>
 
   <div id="hidden-gallery" style="display: none;"></div>
-  </div>
+</div>
+  
   <script src="{{ "/assets/js/main.js" | relative_url }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
