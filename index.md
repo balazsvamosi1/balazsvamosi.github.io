@@ -64,6 +64,8 @@ background_image: "{{ site.background_images | sample }}"
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css">
 
 <script>
   function showGallery(folder) {
@@ -118,29 +120,55 @@ background_image: "{{ site.background_images | sample }}"
 
   // Function to initialize PhotoSwipe from the gallery links
   function initPhotoSwipeFromDOM(gallerySelector) {
-    // Define PhotoSwipe options (customize as needed)
-    var options = {
-      index: 0, // Starting slide index
-      bgOpacity: 0.8, // Background opacity
-      history: false // Disable history/back button
+  // Get the gallery element
+  var galleryElement = document.querySelector(gallerySelector);
+
+  // Find all the link elements within the gallery element
+  var galleryItems = galleryElement.getElementsByTagName('a');
+
+  // Create an array to store the slides
+  var slides = [];
+
+  // Loop through each link element and add it to the slides array
+  for (var i = 0; i < galleryItems.length; i++) {
+    var item = galleryItems[i];
+
+    // Create a slide object for each link element
+    var slide = {
+      src: item.getAttribute('href'),
+      w: parseInt(item.getAttribute('data-width')),
+      h: parseInt(item.getAttribute('data-height')),
+      title: item.getAttribute('data-title')
     };
 
-    // Generate PhotoSwipe instance
-    var gallery = new PhotoSwipe(
-      document.querySelector(gallerySelector),
-      PhotoSwipeUI_Default,
-      [],
-      options
-    );
-
-    // Bind event listener for close button click
-    gallery.listen('close', function () {
-      // Reset the gallery on close
-      gallery.close();
-      gallery = null;
-    });
-
-    // Initialize PhotoSwipe
-    gallery.init();
+    // Add the slide object to the slides array
+    slides.push(slide);
   }
+
+  // Define PhotoSwipe options (customize as needed)
+  var options = {
+    index: 0, // Starting slide index
+    bgOpacity: 0.8, // Background opacity
+    history: false, // Disable history/back button
+    showHideOpacity: true // Show/hide the gallery using opacity
+  };
+
+  // Generate PhotoSwipe instance
+  var gallery = new PhotoSwipe(
+    document.querySelectorAll('.pswp')[0],
+    PhotoSwipeUI_Default,
+    slides,
+    options
+  );
+
+  // Bind event listener for close button click
+  gallery.listen('close', function () {
+    // Reset the gallery on close
+    gallery.close();
+    gallery = null;
+  });
+
+  // Initialize PhotoSwipe
+  gallery.init();
+}
 </script>
