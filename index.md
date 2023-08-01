@@ -32,7 +32,7 @@ background_image: "{{ site.background_images | sample }}"
 
   /* Scale the thumbnails to 30% of the original size */
   .thumbnail img {
-    max-width: 30%;
+    max-width: 10%;
     max-height: auto;
   }
 </style>
@@ -43,7 +43,7 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Galéria section -->
 <div class="center-text">
-  <h2>Galéria 2222</h2>
+  <h2>Galéria 2112</h2>
   <!-- Add any additional content or description for the gallery here -->
 </div>
 
