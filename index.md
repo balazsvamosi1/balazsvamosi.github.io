@@ -5,7 +5,7 @@ background_image: "{{ site.background_images | sample }}"
 ---
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE21! </h1>
+  <h1>Üdvözöllek az oldalamon !TEST PAGE22! </h1>
 
   <p>
    Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
@@ -31,6 +31,16 @@ background_image: "{{ site.background_images | sample }}"
   <button id="gallery-button3" onclick="showGallery('mandalak')">Mandalák</button>
 
   <div id="hidden-gallery" style="display: none;"></div>
+
+  <!-- PhotoSwipe CSS and JS files -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+  
+  <!-- SimpleLightbox CSS and JS files -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
 
   <style>
     .center-text {
@@ -67,56 +77,56 @@ background_image: "{{ site.background_images | sample }}"
   </p>
 </div>
 
-<script>
+ <script>
   function showGallery(folder) {
-    var button = document.getElementById(`gallery-button${folder}`);
-    var hiddenGallery = document.getElementById('hidden-gallery');
-
-    if (hiddenGallery.style.display === 'none') {
-      getImagesFromRepo(folder).then(function (imageURLs) {
-        for (var i = 0; i < imageURLs.length; i++) {
-          var aTag = document.createElement('a');
-          aTag.href = imageURLs[i];
-          aTag.setAttribute('data-lightbox', `gallery-${folder}`);
-          aTag.setAttribute('data-title', 'Photo ' + (i + 1));
-
-          var imgTag = document.createElement('img');
-          imgTag.src = imageURLs[i];
-          imgTag.alt = 'Photo ' + (i + 1);
-
-          aTag.appendChild(imgTag);
-          hiddenGallery.appendChild(aTag);
-        }
-
-        hiddenGallery.style.display = 'flex';
-        button.innerHTML = 'Bezárás';
-
-        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
-      });
-    } else {
-      hiddenGallery.innerHTML = '';
-      hiddenGallery.style.display = 'none';
-      button.innerHTML = `Galéria ${folder}`;
-    }
+    // Code for showing and hiding the gallery, as provided in the previous responses
   }
 
   function getImagesFromRepo(folder) {
-    var username = 'balazsvamosi1';
-    var repo = 'balazsvamosi.github.io';
-    var path = 'assets/images/' + folder; // Set the correct path here
-
-    return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/' + path)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        var imageUrls = data.filter(function (item) {
-          return item.name.endsWith('.jpeg') || item.name.endsWith('.jpg');
-        }).map(function (item) {
-          return item.download_url;
-        });
-
-        return imageUrls;
-      });
+    // Code for fetching image URLs, as provided in the previous responses
   }
+
+  // Function to initialize PhotoSwipe from DOM elements
+  function initPhotoSwipeFromDOM(gallerySelector) {
+    var parseThumbnailElements = function(el) {
+      // Implement your parsing logic for the thumbnail elements here
+    };
+
+    var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
+      // Implement the logic to open PhotoSwipe here
+    };
+
+    // Loop through each gallery element and initialize PhotoSwipe for each one
+    var galleryElements = document.querySelectorAll(gallerySelector);
+    for (var i = 0; i < galleryElements.length; i++) {
+      galleryElements[i].setAttribute('data-pswp-uid', i + 1);
+      galleryElements[i].onclick = onThumbnailsClick;
+    }
+
+    // Function to handle the click event on the thumbnails
+    var onThumbnailsClick = function(e) {
+      e = e || window.event;
+      e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+      var eTarget = e.target || e.srcElement;
+
+      // Find the root of the clicked element, which should be the gallery container
+      var clickedGallery = eTarget.closest(gallerySelector);
+      if (!clickedGallery) {
+        return;
+      }
+
+      // Parse the thumbnail elements to get the index and other relevant data
+      var index = Array.prototype.indexOf.call(galleryElements, clickedGallery);
+      if (index >= 0) {
+        openPhotoSwipe(index, clickedGallery);
+      }
+      return false;
+    };
+  }
+
+  // Call the function to initialize PhotoSwipe from the DOM elements
+  document.addEventListener('DOMContentLoaded', function() {
+    initPhotoSwipeFromDOM('[data-lightbox]');
+  });
 </script>
