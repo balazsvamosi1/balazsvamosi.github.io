@@ -41,7 +41,7 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Galéria section -->
 <div class="center-text">
-  <h2>Galéria 2 </h2>
+  <h2>Galéria 3 </h2>
   <!-- Add any additional content or description for the gallery here -->
 </div>
 
@@ -50,9 +50,10 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Buttons to trigger the galleries -->
 <div class="center-buttons">
-  <button id="gallery-button1" onclick="showGallery('ajandek')">Ajándék</button>
-  <button id="gallery-button2" onclick="showGallery('bogrek')">Bögrék</button>
-  <button id="gallery-button3" onclick="showGallery('mandalak')">Mandalák</button>
+  <button onclick="showAjandekGallery()">Ajándék</button>
+  <button onclick="showBogrekGallery()">Bögrék</button>
+  <button onclick="showMandalakGallery()">Mandalák</button>
+<div id="hidden-gallery" style="display: none;"></div>
 </div>
 
 <!-- Kapcsolat section -->
@@ -63,59 +64,23 @@ background_image: "{{ site.background_images | sample }}"
   </p>
 </div>
 
-<!-- PhotoSwipe scripts and styles -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<!-- simplelightbox scripts and styles -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
 
 <!-- Initialize PhotoSwipe for each gallery -->
-<script>
-  function initPhotoSwipe(gallerySelector) {
-    var parseThumbnailElements = function(el) {
-      // Function to parse gallery links and return PhotoSwipe items array
-      // You may need to modify this based on your specific image source
-      var thumbElements = el.childNodes;
-      var items = [];
-      for (var i = 0; i < thumbElements.length; i++) {
-        var linkEl = thumbElements[i].querySelector('a');
-        var size = linkEl.getAttribute('data-size').split('x');
-        var item = {
-          src: linkEl.getAttribute('href'),
-          w: parseInt(size[0], 10),
-          h: parseInt(size[1], 10),
-          title: linkEl.getAttribute('data-title')
-        };
-        items.push(item);
-      }
-      return items;
-    };
-
-    // Function to open the PhotoSwipe gallery
-    var openPhotoSwipe = function(index, galleryElement) {
-      var pswpElement = document.querySelectorAll('.pswp')[0];
-      var items = parseThumbnailElements(galleryElement);
-      var options = {
-        // Your options for PhotoSwipe (e.g., shareButtons, fullscreen, etc.)
-        index: index
-      };
-      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
-      gallery.init();
-    };
-
-    // Find the gallery links within the specified selector
-    var galleryElements = document.querySelectorAll(gallerySelector);
-    for (var i = 0; i < galleryElements.length; i++) {
-      galleryElements[i].setAttribute('data-pswp-uid', i + 1);
-      galleryElements[i].onclick = function(e) {
-        e.preventDefault();
-        var index = parseInt(this.getAttribute('data-pswp-uid'), 10) - 1;
-        openPhotoSwipe(index, this);
-      };
-    }
+ function showAjandekGallery() {
+    showGallery('ajandek');
   }
 
-  // Function to show the gallery for each button
+  function showBogrekGallery() {
+    showGallery('bogrek');
+  }
+
+  function showMandalakGallery() {
+    showGallery('mandalak');
+  }
+<script>
   function showGallery(folder) {
     var button = document.getElementById(`gallery-button${folder}`);
     var hiddenGallery = document.getElementById('hidden-gallery');
@@ -125,12 +90,12 @@ background_image: "{{ site.background_images | sample }}"
         for (var i = 0; i < imageURLs.length; i++) {
           var aTag = document.createElement('a');
           aTag.href = imageURLs[i];
-          aTag.setAttribute('data-size', '800x600'); // Set the size of the image (you can adjust this)
-          aTag.setAttribute('data-title', 'Image ' + (i + 1));
+          aTag.setAttribute('data-lightbox', `gallery-${folder}`);
+          aTag.setAttribute('data-title', 'Photo ' + (i + 1));
 
           var imgTag = document.createElement('img');
           imgTag.src = imageURLs[i];
-          imgTag.alt = 'Image ' + (i + 1);
+          imgTag.alt = 'Photo ' + (i + 1);
 
           aTag.appendChild(imgTag);
           hiddenGallery.appendChild(aTag);
@@ -139,12 +104,32 @@ background_image: "{{ site.background_images | sample }}"
         hiddenGallery.style.display = 'flex';
         button.innerHTML = 'Bezárás';
 
-        initPhotoSwipe(`#hidden-gallery`);
+        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
       });
     } else {
       hiddenGallery.innerHTML = '';
       hiddenGallery.style.display = 'none';
       button.innerHTML = `Galéria ${folder}`;
     }
+  }
+
+  function getImagesFromRepo(folder) {
+    var username = 'balazsvamosi1';
+    var repo = 'balazsvamosi.github.io';
+    var path = 'assets/images/' + folder; // Set the correct path here
+
+    return fetch('https://api.github.com/repos/' + username + '/' + repo + '/contents/' + path)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        var imageUrls = data.filter(function (item) {
+          return item.name.endsWith('.jpeg') || item.name.endsWith('.jpg');
+        }).map(function (item) {
+          return item.download_url;
+        });
+
+        return imageUrls;
+      });
   }
 </script>
