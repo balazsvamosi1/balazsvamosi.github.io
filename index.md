@@ -5,7 +5,7 @@ background_image: "{{ site.background_images | sample }}"
 ---
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE17! </h1>
+  <h1>Üdvözöllek az oldalamon !TEST PAGE18! </h1>
 
   <p>
    Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
@@ -33,6 +33,13 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
 
   <div id="hidden-gallery" style="display: none;"></div>
 </div>
+
+  <div class="center-text">
+  <h2>Kapcsolat</h2>
+  <p>
+    További festményekért és árakért érdeklődj: hjudit64(kukac)gmail.com címen
+  </p>
+  </div>
   
   <script src="{{ "/assets/js/main.js" | relative_url }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
@@ -65,13 +72,6 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
     }
   </style>
   
-  <div class="center-text">
-  <h2>Kapcsolat</h2>
-  <p>
-    További festményekért és árakért érdeklődj: hjudit64(kukac)gmail.com címen
-  </p>
-  </div>
-  
 <script>
   function showGallery(folder) {
     var button = document.getElementById(`gallery-button${folder}`);
@@ -79,27 +79,26 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
 
     if (hiddenGallery.style.display === 'none') {
       getImagesFromRepo(folder).then(function (imageURLs) {
-        var galleryItems = imageURLs.map(function (url, index) {
-          return {
-            src: url,
-            w: 1200, // Replace with the width of the image in pixels
-            h: 800, // Replace with the height of the image in pixels
-            title: 'Photo ' + (index + 1)
-          };
-        });
+        for (var i = 0; i < imageURLs.length; i++) {
+          var aTag = document.createElement('a');
+          aTag.href = imageURLs[i];
+          aTag.setAttribute('data-lightbox', `gallery-${folder}`);
+          aTag.setAttribute('data-title', 'Photo ' + (i + 1));
 
-        var pswpElement = document.querySelectorAll('.pswp')[0];
-        var options = {
-          index: 0, // Start at the first image
-          bgOpacity: 0.85, // Background opacity of the pop-up
-          showHideOpacity: true // Toggle opacity during zoom animation
-        };
+          var imgTag = document.createElement('img');
+          imgTag.src = imageURLs[i];
+          imgTag.alt = 'Photo ' + (i + 1);
 
-        var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, galleryItems, options);
-        gallery.init();
+          aTag.appendChild(imgTag);
+          hiddenGallery.appendChild(aTag);
+        }
 
         hiddenGallery.style.display = 'flex';
         button.innerHTML = 'Bezárás';
+
+        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`, {
+          /* Optional PhotoSwipe options can be added here */
+        });
       });
     } else {
       hiddenGallery.innerHTML = '';
