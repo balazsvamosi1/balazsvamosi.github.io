@@ -29,6 +29,12 @@ background_image: "{{ site.background_images | sample }}"
     max-width: 70%;
     max-height: 70vh;
   }
+
+  /* Scale the thumbnails to 30% of the original size */
+  .thumbnail img {
+    max-width: 30%;
+    max-height: auto;
+  }
 </style>
 
 <div class="center-text">
@@ -37,7 +43,7 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Galéria section -->
 <div class="center-text">
-  <h2>Galéria 111</h2>
+  <h2>Galéria 2222</h2>
   <!-- Add any additional content or description for the gallery here -->
 </div>
 
@@ -79,7 +85,10 @@ background_image: "{{ site.background_images | sample }}"
           imgTag.src = imageURLs[i];
           imgTag.alt = 'Photo ' + (i + 1);
 
-          aTag.appendChild(imgTag);
+          var thumbnailDiv = document.createElement('div');
+          thumbnailDiv.classList.add('thumbnail');
+          thumbnailDiv.appendChild(imgTag);
+          aTag.appendChild(thumbnailDiv);
           hiddenGallery.appendChild(aTag);
         }
 
