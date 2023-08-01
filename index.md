@@ -5,7 +5,34 @@ background_image: "{{ site.background_images | sample }}"
 ---
 
 <style>
-  /* Your existing styles here */
+  .center-text {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 800px;
+  }
+
+  .center-buttons {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .gallery-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  #hidden-gallery img {
+    max-width: 70%;
+    max-height: 70vh;
+  }
 </style>
 
 <div class="center-text">
@@ -14,7 +41,7 @@ background_image: "{{ site.background_images | sample }}"
 
 <!-- Galéria section -->
 <div class="center-text">
-  <h2>Galéria 4 </h2>
+  <h2>Galéria 5</h2>
   <!-- Add any additional content or description for the gallery here -->
 </div>
 
@@ -25,8 +52,10 @@ background_image: "{{ site.background_images | sample }}"
   <button onclick="showMandalakGallery()">Mandalák</button>
 </div>
 
-<!-- Hidden gallery container -->
-<div id="hidden-gallery" style="display: none;"></div>
+<!-- Hidden gallery containers -->
+<div id="hidden-gallery-ajandek" style="display: none;"></div>
+<div id="hidden-gallery-bogrek" style="display: none;"></div>
+<div id="hidden-gallery-mandalak" style="display: none;"></div>
 
 <!-- Kapcsolat section -->
 <div class="center-text">
@@ -40,6 +69,7 @@ background_image: "{{ site.background_images | sample }}"
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
 
+<!-- Initialize PhotoSwipe for each gallery -->
 <script>
   function showAjandekGallery() {
     showGallery('ajandek');
@@ -55,10 +85,11 @@ background_image: "{{ site.background_images | sample }}"
 
   function showGallery(folder) {
     var button = document.getElementById(`gallery-button${folder}`);
-    var hiddenGallery = document.getElementById('hidden-gallery');
+    var hiddenGallery = document.getElementById(`hidden-gallery-${folder}`);
 
     if (hiddenGallery.style.display === 'none') {
       getImagesFromRepo(folder).then(function (imageURLs) {
+        hiddenGallery.innerHTML = ''; // Clear previous images
         for (var i = 0; i < imageURLs.length; i++) {
           var aTag = document.createElement('a');
           aTag.href = imageURLs[i];
@@ -76,7 +107,7 @@ background_image: "{{ site.background_images | sample }}"
         hiddenGallery.style.display = 'flex';
         button.innerHTML = 'Bezárás';
 
-        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
+        initPhotoSwipeFromDOM(`#hidden-gallery-${folder} [data-lightbox="gallery-${folder}"]`);
       });
     } else {
       hiddenGallery.innerHTML = '';
@@ -103,5 +134,10 @@ background_image: "{{ site.background_images | sample }}"
 
         return imageUrls;
       });
+  }
+
+  // Function to initialize PhotoSwipe from the gallery links
+  function initPhotoSwipeFromDOM(gallerySelector) {
+    // Your PhotoSwipe initialization code here
   }
 </script>
