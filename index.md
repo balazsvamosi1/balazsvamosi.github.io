@@ -4,13 +4,16 @@ title: My Photo Gallery
 background_image: "{{ site.background_images | sample }}"
 ---
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
-
 <style>
   .center-text {
     text-align: center;
     margin: 0 auto;
     max-width: 800px;
+  }
+
+  .center-buttons {
+    text-align: center;
+    margin-top: 20px;
   }
 
   .gallery-container {
@@ -37,19 +40,16 @@ background_image: "{{ site.background_images | sample }}"
 </div>
 
 <!-- Buttons to trigger the galleries -->
-<button id="gallery-button1" onclick="showGallery('ajandek')">Ajándék</button>
-<button id="gallery-button2" onclick="showGallery('bogrek')">Bögrék</button>
-<button id="gallery-button3" onclick="showGallery('mandalak')">Mandalák</button>
-
+<div class="center-buttons">
+  <button id="gallery-button1" onclick="showGallery('ajandek')">Ajándék</button>
+  <button id="gallery-button2" onclick="showGallery('bogrek')">Bögrék</button>
+  <button id="gallery-button3" onclick="showGallery('mandalak')">Mandalák</button>
+</div>
 <!-- Hidden gallery container -->
 <div id="hidden-gallery" style="display: none;"></div>
 
-<div class="center-text">
-  <h2>Kapcsolat</h2>
-  <p>
-    További festményekért és árakért érdeklődj: hjudit64(kukac)gmail.com címen
-  </p>
-</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
 
 <script>
   function showGallery(folder) {
@@ -61,8 +61,6 @@ background_image: "{{ site.background_images | sample }}"
         for (var i = 0; i < imageURLs.length; i++) {
           var aTag = document.createElement('a');
           aTag.href = imageURLs[i];
-          aTag.setAttribute('data-lightbox', `gallery-${folder}`);
-          aTag.setAttribute('data-title', 'Photo ' + (i + 1));
 
           var imgTag = document.createElement('img');
           imgTag.src = imageURLs[i];
@@ -75,7 +73,7 @@ background_image: "{{ site.background_images | sample }}"
         hiddenGallery.style.display = 'flex';
         button.innerHTML = 'Bezárás';
 
-        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery-${folder}"]`);
+        initPhotoSwipeFromDOM(`#hidden-gallery`);
       });
     } else {
       hiddenGallery.innerHTML = '';
@@ -104,5 +102,3 @@ background_image: "{{ site.background_images | sample }}"
       });
   }
 </script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
