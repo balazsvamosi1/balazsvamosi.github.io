@@ -11,11 +11,6 @@ background_image: "{{ site.background_images | sample }}"
     max-width: 800px;
   }
 
-  .center-buttons {
-    text-align: center;
-    margin-top: 20px;
-  }
-
   .gallery-container {
     position: fixed;
     top: 0;
@@ -29,6 +24,7 @@ background_image: "{{ site.background_images | sample }}"
     z-index: 9999;
   }
 
+  /* Scale the images in the pop-up to 70% of the screen size */
   #hidden-gallery img {
     max-width: 70%;
     max-height: 70vh;
@@ -49,8 +45,8 @@ background_image: "{{ site.background_images | sample }}"
 <div id="hidden-gallery" style="display: none;"></div>
 
 <!-- Button to trigger the gallery -->
-<div class="center-buttons">
-  <button onclick="showGallery()">Ajándék</button>
+<div class="center-text">
+  <button id="gallery-button" onclick="showGallery()">Ajándék</button>
 </div>
 
 <!-- Kapcsolat section -->
@@ -65,10 +61,9 @@ background_image: "{{ site.background_images | sample }}"
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
 
-<!-- Initialize PhotoSwipe for the first gallery -->
 <script>
   function showGallery() {
-    var button = document.querySelector('button');
+    var button = document.getElementById('gallery-button');
     var hiddenGallery = document.getElementById('hidden-gallery');
 
     if (hiddenGallery.style.display === 'none') {
@@ -91,7 +86,7 @@ background_image: "{{ site.background_images | sample }}"
         hiddenGallery.style.display = 'flex';
         button.innerHTML = 'Bezárás';
 
-        var gallery = new SimpleLightbox(`#hidden-gallery [data-lightbox="gallery"]`);
+        var gallery = new SimpleLightbox('#hidden-gallery a');
       });
     } else {
       hiddenGallery.innerHTML = '';
