@@ -3,13 +3,17 @@ layout: default
 title: My Photo Gallery
 background_image: "{{ site.background_images | sample }}"
 ---
+<!-- Add PhotoSwipe CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+<!-- Add PhotoSwipe JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
 
+
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon !TEST PAGE9! </h1>
+  <h1>Üdvözöllek az oldalamon !TEST PAGE11! </h1>
 
   <p>
    Engedd meg, hogy bemutassam magam. A nevem Vámosiné Horváth Judit, és az alkotás, a színek és a művészet iránti szenvedélyem mindig is kísértett. Az életem jelenlegi részét a festészetnek és a kreativitásnak szenteltem, és örömmel osztom meg veled ezeket a műalkotásokat, amelyeket készítettem az elmúlt időszakban.
@@ -69,44 +73,48 @@ Köszönöm, hogy meglátogattál, és remélem, hogy az alkotásaim által épp
   </style>
 <script>
   function showGallery(folder) {
-    var button = document.getElementById(`gallery-button${folder}`);
-    var hiddenGallery = document.getElementById('hidden-gallery');
+  var button = document.getElementById(`gallery-button${folder}`);
+  var hiddenGallery = document.getElementById('hidden-gallery');
 
-    if (hiddenGallery.style.display === 'none') {
-      getImagesFromRepo(folder).then(function (imageURLs) {
-        hiddenGallery.innerHTML = ''; // Clear any previous images
-        for (var i = 0; i < imageURLs.length; i++) {
-          var aTag = document.createElement('a');
-          aTag.href = imageURLs[i];
-          aTag.setAttribute('data-size', '1200x900');
-          aTag.setAttribute('data-title', 'Photo ' + (i + 1));
+  if (hiddenGallery.style.display === 'none') {
+    getImagesFromRepo(folder).then(function (imageURLs) {
+      var pswpElement = document.querySelectorAll('.pswp')[0];
+      var items = [];
 
-          var imgTag = document.createElement('img');
-          imgTag.src = imageURLs[i];
-          imgTag.alt = 'Photo ' + (i + 1);
-
-          aTag.appendChild(imgTag);
-          hiddenGallery.appendChild(aTag);
-        }
-
-        hiddenGallery.style.display = 'flex';
-        button.innerHTML = 'Bezárás';
-
-        var pswpElement = document.querySelectorAll('.pswp')[0];
-        var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, hiddenGallery.querySelectorAll('a'), { index: 0 });
-        gallery.init();
-
-        gallery.listen('close', function () {
-          hiddenGallery.style.display = 'none';
-          button.innerHTML = `Galéria ${folder}`;
+      imageURLs.forEach(function (url, index) {
+        items.push({
+          src: url,
+          w: 800,
+          h: 600
         });
+
+        var aTag = document.createElement('a');
+        aTag.href = url;
+        aTag.setAttribute('data-lightbox', `gallery-${folder}`);
+        aTag.setAttribute('data-title', 'Photo ' + (index + 1));
+
+        var imgTag = document.createElement('img');
+        imgTag.src = url;
+        imgTag.alt = 'Photo ' + (index + 1);
+
+        aTag.appendChild(imgTag);
+        hiddenGallery.appendChild(aTag);
       });
-    } else {
-      hiddenGallery.innerHTML = '';
-      hiddenGallery.style.display = 'none';
-      button.innerHTML = `Galéria ${folder}`;
-    }
+
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+        index: 0
+      });
+      gallery.init();
+
+      hiddenGallery.style.display = 'flex';
+      button.innerHTML = 'Bezárás';
+    });
+  } else {
+    hiddenGallery.innerHTML = '';
+    hiddenGallery.style.display = 'none';
+    button.innerHTML = `Galéria ${folder}`;
   }
+}
 
   function getImagesFromRepo(folder) {
     var username = 'balazsvamosi1';
