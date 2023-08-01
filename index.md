@@ -48,6 +48,20 @@ background_image: "{{ site.background_images | sample }}"
 <!-- Hidden gallery container -->
 <div id="hidden-gallery" style="display: none;"></div>
 
+<!-- Galéria section -->
+<div class="center-text">
+  <h2>Galéria</h2>
+  <!-- Add any additional content or description for the gallery here -->
+</div>
+
+<!-- Kapcsolat section -->
+<div class="center-text">
+  <h2>Kapcsolat</h2>
+  <p>
+    További festményekért és árakért érdeklődj: hjudit64(kukac)gmail.com címen
+  </p>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
 
