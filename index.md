@@ -5,7 +5,7 @@ background_image: "{{ site.background_images | sample }}"
 ---
 
 <div class="center-text">
-  <h1>Üdvözöllek az oldalamon!</h1>
+  <h1>Üdvözöllek az oldalamon! !TEST page!</h1>
 
   <p>
     A pontfestészet az ausztrál őslakosok (Aboriginal Australians) művészetének egyedülálló és szerves része. Kezdetben a homokba, földre pöttyözték az ábrákat, mintákat, mely törzsi történeteknek szent jelentései voltak. Egy-egy festmény adott szertartáshoz, rituáléhoz tartozott. A beavatatlanok soha nem láthatták ezeket a rajzokat, szent mintákat, mivel a földet újra elsimították a szertartás után.
