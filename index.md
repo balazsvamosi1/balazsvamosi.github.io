@@ -115,4 +115,32 @@ background_image: "{{ site.background_images | sample }}"
         return imageUrls;
       });
   }
+
+  // Function to initialize PhotoSwipe from the gallery links
+  function initPhotoSwipeFromDOM(gallerySelector) {
+    // Define PhotoSwipe options (customize as needed)
+    var options = {
+      index: 0, // Starting slide index
+      bgOpacity: 0.8, // Background opacity
+      history: false // Disable history/back button
+    };
+
+    // Generate PhotoSwipe instance
+    var gallery = new PhotoSwipe(
+      document.querySelector(gallerySelector),
+      PhotoSwipeUI_Default,
+      [],
+      options
+    );
+
+    // Bind event listener for close button click
+    gallery.listen('close', function () {
+      // Reset the gallery on close
+      gallery.close();
+      gallery = null;
+    });
+
+    // Initialize PhotoSwipe
+    gallery.init();
+  }
 </script>
