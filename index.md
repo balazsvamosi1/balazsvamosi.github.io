@@ -39,6 +39,12 @@ background_image: "{{ site.background_images | sample }}"
   {% include_relative _includes/introduction.html %}
 </div>
 
+<!-- Galéria section -->
+<div class="center-text">
+  <h2>Galéria</h2>
+  <!-- Add any additional content or description for the gallery here -->
+</div>
+
 <!-- Buttons to trigger the galleries -->
 <div class="center-buttons">
   <button id="gallery-button1" onclick="showGallery('ajandek')">Ajándék</button>
@@ -47,12 +53,6 @@ background_image: "{{ site.background_images | sample }}"
 </div>
 <!-- Hidden gallery container -->
 <div id="hidden-gallery" style="display: none;"></div>
-
-<!-- Galéria section -->
-<div class="center-text">
-  <h2>Galéria</h2>
-  <!-- Add any additional content or description for the gallery here -->
-</div>
 
 <!-- Kapcsolat section -->
 <div class="center-text">
