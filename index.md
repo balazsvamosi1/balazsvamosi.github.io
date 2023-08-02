@@ -1,6 +1,6 @@
 ---
 layout: default
-title: pontcsoda
+title: varazspontok
 background_image: "{{ site.background_images | sample }}"
 ---
 
