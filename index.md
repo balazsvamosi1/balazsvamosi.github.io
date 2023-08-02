@@ -1,6 +1,6 @@
 ---
 layout: default
-title: My Photo Gallery
+title: pontcsoda
 background_image: "{{ site.background_images | sample }}"
 ---
 
