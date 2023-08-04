@@ -1,6 +1,7 @@
 ---
 layout: default
 title: varazspontok
+description: Üdvözöllek a Varázspontok oldalon, fotó galériámban megtalálod a csodákat ajándék, bögrék, mandalák.
 background_image: "{{ site.background_images | sample }}"
 ---
 
